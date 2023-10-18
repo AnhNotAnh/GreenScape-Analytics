@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Assig2.Data;
 using Assig2.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Assig2.Controllers
 {
@@ -197,7 +198,7 @@ namespace Assig2.Controllers
         // GET: /api/B_Countries/api/CountryEmissionData/{countryId}?elementId=x
         [HttpGet]
         [Route("CountryEmissionData/{countryId}")]
-        public async Task<ActionResult<IEnumerable<object>>> CountryEmissionData(int countryId, int elementId)
+        public async Task<ActionResult<IEnumerable<object>>> CountryEmissionData(int countryId, [Required] int elementId)
         {
             if (countryId == 0 || elementId == 0) { return BadRequest(); }
 
