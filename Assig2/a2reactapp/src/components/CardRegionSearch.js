@@ -18,11 +18,6 @@ function CardListSearch() {
             })
     }, []);
 
-    //function searchQuery() {
-    //    const value = document.querySelector('[name="searchText"]').value;
-    //    setQuery(value);
-    //}
-
     function handleSubmit(e) {
         e.preventDefault();
 
@@ -41,23 +36,25 @@ function CardListSearch() {
                     <div className="col-3">
                         <input type="text" name="searchText" className="form-control" placeholder="Item Search..." />
                     </div>
-                    <div className="col-3 text-left">
+                    <div className="col-1 text-left">
                         <button type="submit" className="btn btn-outline-info">Search</button>
                     </div>
                 </form>
             </div>
-            <div className="row justify-content-center">
-                {cardData.map((obj) => (
-                    <CardRegion
-                        key={obj.regionId}
-                        regionId={obj.regionId}
-                        regionName={obj.regionName}
-                        countryCount={obj.countryCount}
-                        imageUrl={obj.imageUrl}
-                    />
-                )
-                )
-                }
+            <div className="container text-center">
+                <div className="row justify-content-center">
+                    {cardData.map((obj) => (
+                        <CardRegion
+                            key={obj.regionId}
+                            regionId={obj.regionId}
+                            regionName={obj.regionName}
+                            countryCount={obj.countryCount}
+                            imageUrl={obj.imageUrl}
+                        />
+                    )
+                    )
+                    }
+                </div>
             </div>
         </>
 

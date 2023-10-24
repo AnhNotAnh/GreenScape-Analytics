@@ -1,6 +1,5 @@
 import './App.css';
 import { Link, Outlet } from "react-router-dom";
-import CardRegionSearch from './components/CardRegionSearch'
 
 function App() {
   return (
@@ -15,13 +14,12 @@ function App() {
                       <div className="navbar-nav">
                           <Link className="nav-link active" to="/Test" >Test</Link>
                           <Link className="nav-link" to="/Region" >Region</Link>
-                          <Link className="nav-link" to="/Country" >Country</Link>
+                          <Link className="nav-link" to={"/Country/" + 0} >Country</Link>
                       </div>
                   </div>
               </div>
           </nav>
           <Outlet />
-          <CardRegionSearch/>
       </div>
   );
 }
