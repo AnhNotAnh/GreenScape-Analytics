@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Test from './components/test'
+import Home from './routes/Home'
 import Country from './routes/Country'
 import Region from './routes/Region'
 
@@ -14,11 +14,11 @@ root.render(
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />}>
-                    <Route path="test" element={<Test />} />
+                    <Route path="Home" element={<Home />} />
                     <Route path="Country/:regionId" element={<Country />} />
                     <Route path="Region" element={<Region />} />
-                    <Route path="" element={<Test />} />
-                    <Route path="*" element={<Test />} />
+                    <Route path="" element={<Home />} />
+                    <Route path="*" element={<Home />} />
                 </Route>
             </Routes>
         </BrowserRouter>
