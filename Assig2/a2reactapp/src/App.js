@@ -1,5 +1,6 @@
 import './App.css';
 import { Link, Outlet } from "react-router-dom";
+import CardRegionSearch from './components/CardRegionSearch'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               </div>
           </nav>
           <Outlet />
+          <CardRegionSearch/>
       </div>
   );
 }
