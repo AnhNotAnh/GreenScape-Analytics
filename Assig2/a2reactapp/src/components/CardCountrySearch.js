@@ -1,4 +1,5 @@
 import CardCountry from './CardCountry'
+import CardRegion from './CardRegion'
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 
@@ -8,12 +9,13 @@ function CardCountrySearch() {
     const [cardData, setCardData] = useState([]);
     const [query, setQuery] = useState('');
     const [regionId, setRegionId] = useState(params.regionId)
+    const [regionData, setRegionData] = useState([]);
 
     useEffect(() => {
         console.log("Component load useEffect()")
         fetch(`http://localhost:5256/api/B_Countries/CountryList/${regionId}?searchText=${query}`)
             .then(response => response.json())
-            .then(data => setCardData(data))
+            .then(data => { setCardData(data.countryList); setRegionData(data.theRegion) })
             .catch(err => {
                 console.log(err)
             })
@@ -32,6 +34,18 @@ function CardCountrySearch() {
 
     return (
         <>
+            <div className="container text-center">
+                <div className="row justify-content-center">
+                        <CardRegion
+                        key={regionData.regionId}
+                        regionId={regionData.regionId}
+                        regionName={regionData.regionName}
+                        countryCount={regionData.countryCount}
+                        imageUrl={regionData.imageUrl}
+                        />
+                
+                </div>
+            </div>
             <div id="cardCountrySearch">
                 <form method="post" onSubmit={handleSubmit} className="row justify-content-center mb-3  mt-2">
                     <div className="col-3">
@@ -44,7 +58,7 @@ function CardCountrySearch() {
             </div>
             <div className="container text-center">
                 <div className="row justify-content-center">
-                    {cardData.countryList.map((obj) => (
+                    {cardData.map((obj) => (
                         <CardCountry
                             key={obj.countryId}
                             countryId={obj.countryId}

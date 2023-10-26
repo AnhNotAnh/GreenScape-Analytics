@@ -1,5 +1,6 @@
 import CardCountrySearch from '.././components/CardCountrySearch'
 function Country() {
+
     return (
         <>
             <div>

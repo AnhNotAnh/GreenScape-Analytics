@@ -2,6 +2,7 @@ import './App.css';
 import { Link, Outlet } from "react-router-dom";
 
 function App() {
+
   return (
       <div className="App">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -12,9 +13,9 @@ function App() {
                   </button>
                   <div className="collapse navbar-collapse" id="navbarNav">
                       <div className="navbar-nav">
-                          <Link className="nav-link active" to="/Home" >Home</Link>
-                          <Link className="nav-link" to="/Region" >Region</Link>
-                          <Link className="nav-link" to={"/Country/" + 0} >Country</Link>
+                          <Link className="nav-link active" to="Home" >Home</Link>
+                          <Link className="nav-link" to="Region" >Region</Link>
+                          <Link className="nav-link" to={"Country/" + 0} >Country</Link>
                       </div>
                   </div>
               </div>
