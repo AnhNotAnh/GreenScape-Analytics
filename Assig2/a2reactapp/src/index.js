@@ -29,7 +29,7 @@ root.render(
 
                     <Route path="City" element={<City />}>
                         <Route path=":countryId" element={<City />} />
-                        <Route path="AirQualityDetail/:cityId" element={<AirQualityDetail />} />
+                        <Route path="AirQualityDetail/:cityID" element={<AirQualityDetail />} />
                     </Route>
 
                     <Route path="" element={<Home />} />
