@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './routes/Home'
 import Country from './routes/Country'
 import Region from './routes/Region'
+import City from './routes/City'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,8 +16,9 @@ root.render(
             <Routes>
                 <Route path="/" element={<App />}>
                     <Route path="Home" element={<Home />} />
-                    <Route path="Country/:regionId" element={<Country />} />
                     <Route path="Region" element={<Region />} />
+                    <Route path="Country/:regionId" element={<Country />} />
+                    <Route path="City/:countryId" element={<City />} />
                     <Route path="" element={<Home />} />
                     <Route path="*" element={<Home />} />
                 </Route>
