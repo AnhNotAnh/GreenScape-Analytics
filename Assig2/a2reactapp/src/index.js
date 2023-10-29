@@ -24,8 +24,14 @@ root.render(
                         {/*<Route path=":regionId" element={<Country />} />*/}
                     <Route path="Country/CountryTemperatureDetail/:countryId" element={<CountryTemperatureDetail />} /> 
                     <Route path="Country/CountryEmissionDetail/:countryId" element={<CountryEmissionDetail />} /> 
-                    <Route path="City/:countryId" element={<City />} />
-                    <Route path="City/AirQualityDetail/:cityId" element={<AirQualityDetail />} />
+                    {/*<Route path="City/:countryId" element={<City />} />*/}
+                    {/*<Route path="City/AirQualityDetail/:cityId" element={<AirQualityDetail />} />*/}
+
+                    <Route path="City" element={<City />}>
+                        <Route path=":countryId" element={<City />} />
+                        <Route path="AirQualityDetail/:cityId" element={<AirQualityDetail />} />
+                    </Route>
+
                     <Route path="" element={<Home />} />
                     <Route path="*" element={<Home />} />
                 </Route>

@@ -51,6 +51,9 @@ function CardCountrySearch() {
                             key={obj.cityID}
                             cityID={obj.cityID}
                             cityName={obj.cityName}
+                            airQualityYearRange={obj.airQualityYearRange}
+                            recordCount={obj.recordCount }
+
                         />
                     ))}
 
