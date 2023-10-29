@@ -10,7 +10,7 @@ import Region from './routes/Region'
 import City from './routes/City'
 import CountryTemperatureDetail from './components/CountryTemperatureDetail'
 import CountryEmissionDetail from './components/CountryEmissionDetail'
-
+import AirQualityDetail from './components/AirQualityDetail'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,6 +25,7 @@ root.render(
                     <Route path="Country/CountryTemperatureDetail/:countryId" element={<CountryTemperatureDetail />} /> 
                     <Route path="Country/CountryEmissionDetail/:countryId" element={<CountryEmissionDetail />} /> 
                     <Route path="City/:countryId" element={<City />} />
+                    <Route path="City/AirQualityDetail" element={<AirQualityDetail />} />
                     <Route path="" element={<Home />} />
                     <Route path="*" element={<Home />} />
                 </Route>
