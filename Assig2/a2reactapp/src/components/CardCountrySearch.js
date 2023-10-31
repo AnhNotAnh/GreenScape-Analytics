@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 function CardCountrySearch() {
     let params = useParams();
-    const [cardData, setCardData] = useState([]);
+    const [countryData, setCountryData] = useState([]);
     const [query, setQuery] = useState('');
     const [regionId, setRegionId] = useState(params.regionId)
     const [regionData, setRegionData] = useState([]);
@@ -15,7 +15,7 @@ function CardCountrySearch() {
         console.log("Component load useEffect()")
         fetch(`http://localhost:5256/api/B_Countries/CountryList/${regionId}?searchText=${query}`)
             .then(response => response.json())
-            .then(data => { setCardData(data.countryList); setRegionData(data.theRegion) })
+            .then(data => { setCountryData(data.countryList); setRegionData(data.theRegion) })
             .catch(err => {
                 console.log(err)
             })
@@ -46,7 +46,8 @@ function CardCountrySearch() {
                 
                 </div>
             </div>
-            <div id="cardCountrySearch">
+            {Object.keys(countryData).length > 1 && 
+            <div id="cardCountrySearch"> 
                 <form method="post" onSubmit={handleSubmit} className="row justify-content-center mb-3  mt-2">
                     <div className="col-3">
                         <input type="text" name="searchText" className="form-control" placeholder="Item Search..." />
@@ -55,10 +56,10 @@ function CardCountrySearch() {
                         <button type="submit" className="btn btn-outline-info">Search</button>
                     </div>
                 </form>
-            </div>
+            </div>}
             <div className="container text-center">
                 <div className="row justify-content-center">
-                    {cardData.map((obj) => (
+                    {countryData.map((obj) => (
                         <CardCountry
                             key={obj.countryId}
                             countryId={obj.countryId}
