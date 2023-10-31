@@ -1,5 +1,5 @@
 import CardCountry from './CardCountry'
-import CardRegion from './CardRegion'
+import CardRegionCountry from './CardRegionCountry'
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 
@@ -36,7 +36,7 @@ function CardCountrySearch() {
         <>
             <div className="container text-center">
                 <div className="row justify-content-center">
-                        <CardRegion
+                    <CardRegionCountry
                         key={regionData.regionId}
                         regionId={regionData.regionId}
                         regionName={regionData.regionName}

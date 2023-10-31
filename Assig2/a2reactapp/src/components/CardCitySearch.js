@@ -1,6 +1,7 @@
 import CardCity from './CardCity'
 import React, { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom";
+import { useParams, Link} from "react-router-dom";
+
 
 
 function CardCountrySearch() {
@@ -56,9 +57,9 @@ function CardCountrySearch() {
 
                         />
                     ))}
-
                 </div>
             </div>
+            
         </>
 
     )
