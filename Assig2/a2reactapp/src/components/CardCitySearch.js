@@ -34,7 +34,6 @@ function CardCountrySearch() {
 
     return (
         <>
-            {Object.keys(cardData).length > 1 &&
             <div id="cardCountrySearch">
                 <form method="post" onSubmit={handleSubmit} className="row justify-content-center mb-3  mt-2">
                     <div className="col-3">
@@ -44,7 +43,7 @@ function CardCountrySearch() {
                         <button type="submit" className="btn btn-outline-info">Search</button>
                     </div>
                 </form>
-            </div>}
+            </div>
             <div className="container text-center">
                 <div className="row justify-content-center">
                     {cardData.map((obj) => (
