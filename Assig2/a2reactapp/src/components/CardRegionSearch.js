@@ -9,7 +9,6 @@ function CardListSearch() {
 
     useEffect(() => {
         console.log("Component load useEffect()")
-        /*fetch(`http://localhost:5256/api/A_Regions?SearchText=${query}`)*/
         fetch('http://localhost:5256/api/A_Regions')
             .then(response => response.json())
             .then(data => setCardData(data))
@@ -18,29 +17,11 @@ function CardListSearch() {
             })
     }, []);
 
-    function handleSubmit(e) {
-        e.preventDefault();
-
-        const form = e.target;
-        const formData = new FormData(form);
-        console.log("FormData: " + formData.get("searchText"))
-        setQuery(formData.get("searchText"))
-
-       
-    }
+   
 
     return (
         <>
-            <div id="cardRegionSearch">
-                <form method="post" onSubmit={handleSubmit} className="row justify-content-center mb-3  mt-2">
-                    <div className="col-3">
-                        <input type="text" name="searchText" className="form-control" placeholder="Item Search..." />
-                    </div>
-                    <div className="col-1 text-left">
-                        <button type="submit" className="btn btn-outline-info">Search</button>
-                    </div>
-                </form>
-            </div>
+            
             <div className="container text-center">
                 <div className="row justify-content-center">
                     {cardData.map((obj) => (

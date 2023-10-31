@@ -3,7 +3,7 @@ import CardRegionSearch from '.././components/CardRegionSearch'
 function Region() {
     return (
         <>
-            <div>
+            <div className="mb-3">
                 <h2>Region</h2>
             </div>
             <CardRegionSearch />
