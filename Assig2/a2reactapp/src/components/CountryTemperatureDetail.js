@@ -25,9 +25,9 @@ function CountryTemperatureDetail() {
     return (
         <>
             <div>
-                <h2>Country Temperature Data Frrom {minYear} to {maxYear}</h2>
+                <h2>Country Temperature Data From {minYear} to {maxYear}</h2>
             </div>
-            <div class="row justify-content-center mt-2">
+            <div class="row justify-content-center mt-3">
                 <div class="col">
                     <table class="table table-bordered">
                         <thead>
@@ -41,11 +41,10 @@ function CountryTemperatureDetail() {
                                 <th scope="col">Regional Maximum</th>
                             </tr>
                         </thead>
-                        
                         {countryTemData.map((obj) => (
                             <tbody>
                                 <tr>
-                                    <th scope="row">{obj.theCountryTempData.Year}</th>
+                                    <th scope="row">{obj.theCountryTempData.year}</th>
                                     <td>{obj.theCountryTempData.unit} </td>
                                     <td>{obj.theCountryTempData.change} </td>
                                     <td>{obj.theCountryTempData.value}</td>
