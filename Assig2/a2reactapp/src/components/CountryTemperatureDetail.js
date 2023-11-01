@@ -27,7 +27,38 @@ function CountryTemperatureDetail() {
             <div>
                 <h2>Country Temperature Data Frrom {minYear} to {maxYear}</h2>
             </div>
-            
+            <div class="row justify-content-center mt-2">
+                <div class="col">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Year</th>
+                                <th scope="col">Unit</th>
+                                <th scope="col">Change</th>
+                                <th scope="col">Value</th>
+                                <th scope="col">Regional Average</th>
+                                <th scope="col">Regional Minimum</th>
+                                <th scope="col">Regional Maximum</th>
+                            </tr>
+                        </thead>
+                        
+                        {countryTemData.map((obj) => (
+                            <tbody>
+                                <tr>
+                                    <th scope="row">{obj.theCountryTempData.Year}</th>
+                                    <td>{obj.theCountryTempData.unit} </td>
+                                    <td>{obj.theCountryTempData.change} </td>
+                                    <td>{obj.theCountryTempData.value}</td>
+                                    <td>{obj.regionalAvg != null ? obj.regionalAvg : "No values"}</td>
+                                    <td>{obj.regionalMin != null ? obj.regionalMin : "No values"}</td>
+                                    <td>{obj.regionalMax != null ? obj.regionalMax : "No values"}</td>
+                                </tr>
+                            </tbody>))
+                        }
+                    </table>
+                </div>
+            </div>
+
         </>
     )
 }
