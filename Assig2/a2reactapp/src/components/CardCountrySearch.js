@@ -1,7 +1,7 @@
 import CardCountry from './CardCountry'
 import CardRegionCountry from './CardRegionCountry'
 import React, { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 
 function CardCountrySearch() {
@@ -28,8 +28,6 @@ function CardCountrySearch() {
         const formData = new FormData(form);
         console.log("FormData: " + formData.get("searchText"))
         setQuery(formData.get("searchText"))
-
-       
     }
 
     return (
@@ -73,6 +71,8 @@ function CardCountrySearch() {
                     )
                     }
                 </div>
+                {/*which back button is better*/}
+                <Link to={"/Region"} className="btn btn-primary">Back to Region</Link>
             </div>
         </>
 
