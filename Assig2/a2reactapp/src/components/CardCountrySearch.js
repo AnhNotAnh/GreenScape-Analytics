@@ -65,7 +65,7 @@ function CardCountrySearch() {
                             cityCount={obj.cityCount}
                             imageUrl={obj.imageUrl}
                             temperatureDataYearRange={obj.temperatureDataYearRange}
-                            emissionDataYearRange={obj.emissionDataYearRange}
+                            emissionDataYearRange={obj.emissionDataYearRange} 
                         />
                     )
                     )
