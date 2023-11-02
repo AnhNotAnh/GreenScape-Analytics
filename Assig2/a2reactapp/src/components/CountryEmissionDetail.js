@@ -3,6 +3,10 @@ import { useParams, Link, useLocation } from "react-router-dom";
 
 function CountryEmissionDetail() {
     const countryData = useLocation();
+    const [countryEmissionSum, setCountryEmissionSum] = useState([]);
+    let params = useParams();
+    const [countryId, setCountryId] = useState(params.countryId)
+
 
     return (
         <>
@@ -29,15 +33,14 @@ function CountryEmissionDetail() {
                                     <th scope="col">Year</th>
                                     <th scope="col">Element</th>
                                     <th scope="col">Total Value</th>
-                                    
                                 </tr>
                             </thead>
-                            {countryTemData.map((obj) => (
+                            {countryEmissionSum.map((obj) => (
                                 <tbody>
                                     <tr>
-                                        <th scope="row">{obj.theCountryTempData.year}</th>
-                                        <td>{obj.theCountryTempData.unit} </td>
-                                        <td>{obj.theCountryTempData.change} </td>
+                                        <th scope="row">{obj.year}</th>
+                                        <td>{obj.element} </td>
+                                        <td>{obj.totalValue} </td>
                                     </tr>
                                 </tbody>))
                             }
