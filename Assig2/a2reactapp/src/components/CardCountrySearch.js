@@ -87,9 +87,6 @@ function CardCountrySearch() {
                     )
                     }
                 </div>
-                {/*which back button is better*/}
-
-                <Link to={"/Region"} className="btn btn-primary">Back to Region</Link>
             </div>
         </>
 
