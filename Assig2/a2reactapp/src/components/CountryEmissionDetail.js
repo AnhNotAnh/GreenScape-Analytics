@@ -8,6 +8,17 @@ function CountryEmissionDetail() {
     const [countryId, setCountryId] = useState(params.countryId)
 
 
+    useEffect(() => {
+        console.log("Component load useEffect()")
+        fetch(`http://localhost:5256/api/B_Countries/SummaryCountryEmissionData/${countryId}`)
+            .then(response => response.json())
+            .then(data => setCountryEmissionSum(data))
+            .catch(err => {
+                console.log(err)
+            })
+            }, [countryId]);
+
+
     return (
         <>
             <div>
