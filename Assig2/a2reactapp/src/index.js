@@ -21,23 +21,12 @@ root.render(
                     <Route path="Home" element={<Home />} />
                     <Route path="Region" element={<Region />} />
                     <Route path="Country/:regionId" element={<Country />} />
-                    <Route path="Country/CountryTemperatureDetail/:regionId/:countryId" element={<CountryTemperatureDetail />} /> 
-                    <Route path="Country/CountryEmissionDetail/:regionId/:countryId" element={<CountryEmissionDetail />} />
-
-                    {/*<Route path="Country" element={<Country />} >*/}
-                    {/*    <Route path=":regionId" element={<Country />} />*/}
-                    {/*    <Route path="CountryTemperatureDetail/:countryId" element={<CountryTemperatureDetail />} />*/}
-                    {/*    <Route path="CountryEmissionDetail/:countryId" element={<CountryEmissionDetail />} />*/}
-                    {/*</Route>*/}
-
+                    {/*<Route path="Country/CountryTemperatureDetail/:regionId/:countryId" element={<CountryTemperatureDetail />} /> */}
+                    {/*<Route path="Country/CountryEmissionDetail/:regionId/:countryId" element={<CountryEmissionDetail />} />*/}
+                    <Route path="Country/CountryTemperatureDetail/:countryId" element={<CountryTemperatureDetail />} />
+                    <Route path="Country/CountryEmissionDetail/:countryId" element={<CountryEmissionDetail />} />
                     <Route path="City/:countryId" element={<City />} />
                     <Route path="City/AirQualityDetail/:cityId" element={<AirQualityDetail />} />
-
-                    {/*<Route path="City" element={<City />}>*/}
-                    {/*    <Route path=":countryId" element={<City />} />*/}
-                    {/*    <Route path="AirQualityDetail/:cityID" element={<AirQualityDetail />} />*/}
-                    {/*</Route>*/}
-
                     <Route path="" element={<Home />} />
                     <Route path="*" element={<Home />} />
                 </Route>

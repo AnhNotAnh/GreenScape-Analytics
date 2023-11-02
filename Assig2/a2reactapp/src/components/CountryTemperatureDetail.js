@@ -9,7 +9,6 @@ function CountryTemperatureDetail() {
     const [minYear, setMinYear] = useState();
     const [maxYear, setMaxYear] = useState([]);
     const [countryId, setCountryId] = useState(params.countryId)
-    const [regionId, setRegionId] = useState(params.regionId)
     const countryData = useLocation();
     
 
@@ -71,7 +70,7 @@ function CountryTemperatureDetail() {
                         </table>
                     </div>
                 </div>
-                <Link to={"/Country/" + regionId} className="btn btn-primary mb-2">Back to Country</Link>
+                <Link to={"/Country/" + countryData.state.regionId} className="btn btn-primary mb-2">Back to Country</Link>
             </div>
 
         </>
