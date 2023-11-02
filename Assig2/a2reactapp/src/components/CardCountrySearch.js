@@ -57,29 +57,30 @@ function CardCountrySearch() {
             <div className="container text-center">
                 <div className="row justify-content-center">
                     {countryData.map((obj) => (
-                        //<CardCountry
-                        //    key={obj.countryId}
-                        //    countryId={obj.countryId}
-                        //    countryName={obj.countryName}
-                        //    iso3={obj.iso3}
-                        //    cityCount={obj.cityCount}
-                        //    imageUrl={obj.imageUrl}
-                        //    temperatureDataYearRange={obj.temperatureDataYearRange}
-                        //    emissionDataYearRange={obj.emissionDataYearRange}
-                        ///>
-                        <div className="col-3">
-                            <div className="card mb-2" style={{ width: 18 + 'rem' }} >
-                                <img className="card-img-top" src={obj.imageUrl} alt={"Image of " + obj.countryName} />
-                                <div className="card-body">
-                                    <h5 className="card-title">Name: {obj.countryName}</h5>
-                                    <p className="card-text">ISO3: {obj.iso3}</p>
-                                    <p className="card-text">City count: {obj.cityCount}</p>
-                                    {obj.temperatureDataYearRange[0] !== 0 && <Link to={"/Country/CountryTemperatureDetail/" + regionId + "/" + obj.countryId} className="btn btn-primary ">View Country Temperature {obj.temperatureDataYearRange[0]} - {obj.temperatureDataYearRange[1]}</Link>}
-                                    {obj.emissionDataYearRange[0] !== 0 && <Link to={"/Country/CountryEmissionDetail/" + obj.countryId} className="btn btn-warning mt-2 ">View Country Emission {obj.emissionDataYearRange[0]} - {obj.emissionDataYearRange[1]}</Link>}
-                                    <Link to={"/City/" + obj.countryId} className="btn btn-info mt-2">City</Link>
-                                </div>
-                            </div>
-                        </div>
+                        <CardCountry
+                            key={obj.countryId}
+                            countryId={obj.countryId}
+                            countryName={obj.countryName}
+                            iso3={obj.iso3}
+                            cityCount={obj.cityCount}
+                            imageUrl={obj.imageUrl}
+                            temperatureDataYearRange={obj.temperatureDataYearRange}
+                            emissionDataYearRange={obj.emissionDataYearRange}
+                            regionId = {regionId}
+                        />
+                        //<div className="col-3">
+                        //    <div className="card mb-2" style={{ width: 18 + 'rem' }} >
+                        //        <img className="card-img-top" src={obj.imageUrl} alt={"Image of " + obj.countryName} />
+                        //        <div className="card-body">
+                        //            <h5 className="card-title">Name: {obj.countryName}</h5>
+                        //            <p className="card-text">ISO3: {obj.iso3}</p>
+                        //            <p className="card-text">City count: {obj.cityCount}</p>
+                        //            {obj.temperatureDataYearRange[0] !== 0 && <Link to={"/Country/CountryTemperatureDetail/" + regionId + "/" + obj.countryId} className="btn btn-primary ">View Country Temperature {obj.temperatureDataYearRange[0]} - {obj.temperatureDataYearRange[1]}</Link>}
+                        //            {obj.emissionDataYearRange[0] !== 0 && <Link to={"/Country/CountryEmissionDetail/" + obj.countryId} className="btn btn-warning mt-2 ">View Country Emission {obj.emissionDataYearRange[0]} - {obj.emissionDataYearRange[1]}</Link>}
+                        //            <Link to={"/City/" + obj.countryId} className="btn btn-info mt-2">City</Link>
+                        //        </div>
+                        //    </div>
+                        //</div>
 
 
                     )
