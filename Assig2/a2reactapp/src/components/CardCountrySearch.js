@@ -66,7 +66,8 @@ function CardCountrySearch() {
                             imageUrl={obj.imageUrl}
                             temperatureDataYearRange={obj.temperatureDataYearRange}
                             emissionDataYearRange={obj.emissionDataYearRange}
-                            regionId = {regionId}
+                            regionId={regionId}
+                            regionName={regionData.regionName}
                         />
                         //<div className="col-3">
                         //    <div className="card mb-2" style={{ width: 18 + 'rem' }} >
