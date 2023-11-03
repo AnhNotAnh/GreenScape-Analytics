@@ -6,6 +6,7 @@ function CountryEmissionDetail() {
     const [countryEmissionSum, setCountryEmissionSum] = useState([]);
     let params = useParams();
     const [countryId, setCountryId] = useState(params.countryId)
+    const [elementList, setElementList] = useState([]);
 
 
     useEffect(() => {
@@ -16,7 +17,18 @@ function CountryEmissionDetail() {
             .catch(err => {
                 console.log(err)
             })
-            }, [countryId]);
+    }, [countryId]);
+
+
+    useEffect(() => {
+        console.log("Component load useEffect()")
+        fetch(`http://localhost:5256/api/B_Countries/GetElementList`)
+            .then(response => response.json())
+            .then(data => setElementList(data))
+            .catch(err => {
+                console.log(err)
+            })
+    }, []);
 
 
     return (
@@ -65,7 +77,7 @@ function CountryEmissionDetail() {
                                 <tr>
                                     <th scope="col">Element Name</th>
                                     <th scope="col">Unit</th>
-                                    <th scope="col">Emission data</th>
+                                    <th scope="col">More Emission Data</th>
                                 </tr>
                             </thead>
                             {elementList.map((obj) => (
