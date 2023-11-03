@@ -8,9 +8,7 @@ function CountryEmissionDetail() {
     const [countryId, setCountryId] = useState(params.countryId)
     const [elementList, setElementList] = useState([]);
     const [countryEmissionAd, setCountryEmissionAd] = useState([]);
-    let showEmissionAd = false;
-    const [elementId, setElementId] = useState()
-
+    const [showEmissionAd, setShowEmissionAd] = useState(false) // show table if true
 
     useEffect(() => {
         console.log("Component load useEffect()")
@@ -36,11 +34,11 @@ function CountryEmissionDetail() {
 
     function showEmissionData(e) {
         
-        showEmissionAd = true
+        setShowEmissionAd(true)
 
-        const elementId = e.target.value;
+        const elementID = e.target.value
 
-        fetch(`http://localhost:5256/api/B_Countries/CountryEmissionData/${countryId}?elementId=${elementId}`)
+        fetch(`http://localhost:5256/api/B_Countries/CountryEmissionData/${countryId}?elementId=${elementID}`)
             .then(response => response.json())
             .then(data => setCountryEmissionAd(data))
             .catch(err => {
@@ -54,7 +52,7 @@ function CountryEmissionDetail() {
                 <h2>Country Emission Summary</h2>
             </div>
             <div className="container text-center">
-                <div class="row justify-content-center mt-3">
+                <div className="row justify-content-center mt-3">
                     <div className="col-3">
                         <div className="card mb-2" style={{ width: 18 + 'rem' }} >
                             <img className="card-img-top" src={countryData.state.countryImage} alt={"Image of " + countryData.state.countryName} />
@@ -65,9 +63,9 @@ function CountryEmissionDetail() {
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-center mt-3">
-                    <div class="col">
-                        <table class="table table-bordered">
+                <div className="row justify-content-center mt-3">
+                    <div className="col">
+                        <table className="table table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">Year</th>
@@ -87,9 +85,9 @@ function CountryEmissionDetail() {
                         </table>
                     </div>
                 </div>
-                <div class="row justify-content-center mt-3">
-                    <div class="col">
-                        <table class="table table-bordered">
+                <div className="row justify-content-center mt-3">
+                    <div className="col">
+                        <table className="table table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">Element Name</th>
@@ -102,7 +100,7 @@ function CountryEmissionDetail() {
                                     <tr>
                                         <th scope="row">{obj.elementName}</th>
                                         <td>{obj.unit} </td>
-                                        <td><button type="button" value={obj.elementId} onClick={showEmissionData} class="btn btn-success">More</button>  </td>
+                                        <td><button type="button" value={obj.elementId} onClick={showEmissionData} className="btn btn-success">More</button>  </td>
                                     </tr>
                                 </tbody>))
                             }
@@ -111,9 +109,9 @@ function CountryEmissionDetail() {
                 </div>
                 {showEmissionAd !== false &&
                 <div className="container text-center">
-                    <div class="row justify-content-center mt-3">
-                        <div class="col">
-                            <table class="table table-bordered">
+                    <div className="row justify-content-center mt-3">
+                        <div className="col">
+                            <table className="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th scope="col">Year</th>
@@ -121,14 +119,14 @@ function CountryEmissionDetail() {
                                         <th scope="col">Value</th>
                                     </tr>
                                 </thead>
-                                {countryEmissionAd.map((obj) => (
+                                {countryEmissionAd !== [] ? countryEmissionAd.map((obj) => (
                                     <tbody>
                                         <tr>
                                             <th scope="row">{obj.year}</th>
                                             <td>{obj.itemName} </td>
                                             <td>{obj.value} </td>
                                         </tr>
-                                    </tbody>))
+                                    </tbody>)) : <p>Data is not available !</p>
                                 }
                             </table>
                         </div>
