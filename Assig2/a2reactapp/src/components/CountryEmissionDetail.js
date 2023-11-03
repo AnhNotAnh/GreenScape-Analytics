@@ -9,7 +9,7 @@ function CountryEmissionDetail() {
     const [elementList, setElementList] = useState([]);
     const [countryEmissionAd, setCountryEmissionAd] = useState([]);
     let showEmissionAd = false;
-    const [countryId, setCountryId] = useState(params.countryId)
+    const [elementId, setElementId] = useState()
 
 
     useEffect(() => {
@@ -33,6 +33,20 @@ function CountryEmissionDetail() {
             })
     }, []);
 
+
+    function showEmissionData(e) {
+        
+        showEmissionAd = true
+
+        const elementId = e.target.value;
+
+        fetch(`http://localhost:5256/api/B_Countries/CountryEmissionData/${countryId}?elementId=${elementId}`)
+            .then(response => response.json())
+            .then(data => setCountryEmissionAd(data))
+            .catch(err => {
+                console.log(err)
+            })
+    }
 
     return (
         <>
