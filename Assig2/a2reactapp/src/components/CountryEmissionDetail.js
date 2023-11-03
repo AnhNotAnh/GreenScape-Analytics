@@ -85,7 +85,7 @@ function CountryEmissionDetail() {
                                     <tr>
                                         <th scope="row">{obj.elementName}</th>
                                         <td>{obj.unit} </td>
-                                        <td>{obj.elementId} </td>
+                                        <td> <Link to={"CountryEmissionAdvance/" +  obj.elementId } className="btn btn-primary mb-2">More</Link> </td>
                                     </tr>
                                 </tbody>))
                             }

@@ -10,6 +10,7 @@ import Region from './routes/Region'
 import City from './routes/City'
 import CountryTemperatureDetail from './components/CountryTemperatureDetail'
 import CountryEmissionDetail from './components/CountryEmissionDetail'
+import CountryEmissionAdvance from './components/CountryEmissionAdvance'
 import AirQualityDetail from './components/AirQualityDetail'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -24,7 +25,9 @@ root.render(
                     {/*<Route path="Country/CountryTemperatureDetail/:regionId/:countryId" element={<CountryTemperatureDetail />} /> */}
                     {/*<Route path="Country/CountryEmissionDetail/:regionId/:countryId" element={<CountryEmissionDetail />} />*/}
                     <Route path="Country/CountryTemperatureDetail/:countryId" element={<CountryTemperatureDetail />} />
-                    <Route path="Country/CountryEmissionDetail/:countryId" element={<CountryEmissionDetail />} />
+                    <Route path="Country/CountryEmissionDetail/:countryId" element={<CountryEmissionDetail />} >
+                        <Route path="CountryEmissionAdvance/:elementId" element={<CountryEmissionAdvance />} />
+                    </Route>
                     <Route path="City/:countryId" element={<City />} />
                     <Route path="City/AirQualityDetail/:cityId" element={<AirQualityDetail />} />
                     <Route path="" element={<Home />} />
