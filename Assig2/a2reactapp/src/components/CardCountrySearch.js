@@ -43,7 +43,7 @@ function CardCountrySearch() {
                         />
                 </div>
             </div>
-            {regionData.countryCount > 1 && 
+            {regionData.countryCount > 1 && // will not show search bar if all country is selected since countryCount = 0
             <div id="cardCountrySearch"> 
                 <form method="post" onSubmit={handleSubmit} className="row justify-content-center mb-3  mt-2">
                     <div className="col-3">
