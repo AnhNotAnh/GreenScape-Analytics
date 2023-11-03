@@ -22,7 +22,7 @@ function CountryEmissionDetail() {
     return (
         <>
             <div>
-                <h2>Country Emission Detail</h2>
+                <h2>Country Emission Summary</h2>
             </div>
             <div className="container text-center">
                 <div class="row justify-content-center mt-3">
@@ -52,6 +52,28 @@ function CountryEmissionDetail() {
                                         <th scope="row">{obj.year}</th>
                                         <td>{obj.element} </td>
                                         <td>{obj.totalValue} </td>
+                                    </tr>
+                                </tbody>))
+                            }
+                        </table>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-3">
+                    <div class="col">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Element Name</th>
+                                    <th scope="col">Unit</th>
+                                    <th scope="col">Emission data</th>
+                                </tr>
+                            </thead>
+                            {elementList.map((obj) => (
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">{obj.elementName}</th>
+                                        <td>{obj.unit} </td>
+                                        <td>{obj.elementId} </td>
                                     </tr>
                                 </tbody>))
                             }
