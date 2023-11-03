@@ -46,6 +46,10 @@ function CountryEmissionDetail() {
             })
     }
 
+    function turnOffEmission() {
+        setShowEmissionAd(false)
+    }
+
     return (
         <>
             <div>
@@ -73,15 +77,14 @@ function CountryEmissionDetail() {
                                     <th scope="col">Total Value</th>
                                 </tr>
                             </thead>
-                            {countryEmissionSum.map((obj) => (
-                                <tbody>
-                                    <tr>
+                            <tbody>
+                                {countryEmissionSum.map((obj, index) => (
+                                    <tr key={index }>
                                         <th scope="row">{obj.year}</th>
                                         <td>{obj.element} </td>
                                         <td>{obj.totalValue} </td>
-                                    </tr>
-                                </tbody>))
-                            }
+                                    </tr>))}
+                            </tbody>  
                         </table>
                     </div>
                 </div>
@@ -95,45 +98,46 @@ function CountryEmissionDetail() {
                                     <th scope="col">More Emission Data</th>
                                 </tr>
                             </thead>
-                            {elementList.map((obj) => (
-                                <tbody>
-                                    <tr>
+                            <tbody>
+                                {elementList.map((obj, index) => (
+                                    <tr key={index}>
                                         <th scope="row">{obj.elementName}</th>
                                         <td>{obj.unit} </td>
-                                        <td><button type="button" value={obj.elementId} onClick={showEmissionData} className="btn btn-success">More</button>  </td>
-                                    </tr>
-                                </tbody>))
-                            }
+                                        <td>
+                                            <button type="button" value={obj.elementId} onClick={showEmissionData} className="btn btn-success">Show more</button>    
+                                        </td>
+                                    </tr>))}
+                            </tbody>
                         </table>
                     </div>
                 </div>
                 {showEmissionAd !== false &&
-                <div className="container text-center">
-                    <div className="row justify-content-center mt-3">
-                        <div className="col">
-                            <table className="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Year</th>
-                                        <th scope="col">Item Name</th>
-                                        <th scope="col">Value</th>
-                                    </tr>
-                                </thead>
-                                {countryEmissionAd !== [] ? countryEmissionAd.map((obj) => (
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">{obj.year}</th>
-                                            <td>{obj.itemName} </td>
-                                            <td>{obj.value} </td>
-                                        </tr>
-                                    </tbody>)) : <p>Data is not available !</p>
-                                }
+                <div className="row justify-content-center mt-3">
+                    <div className="col">
+                        <table className="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Year</th>
+                                    <th scope="col">Item Name</th>
+                                    <th scope="col">Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                { countryEmissionAd.length ? countryEmissionAd.map((obj, index) => (
+                                     <tr key={index}>
+                                         <th scope="row">{obj.year}</th>
+                                         <td>{obj.itemName} </td>
+                                         <td>{obj.value} </td>
+                                     </tr>)) : <tr><td colspan="3" className="table-active">Data is not available for this element, try different one !</td></tr>}
+                            </tbody>
                             </table>
                         </div>
-                    </div>
-                </div>}
-                
+                    </div>}
+                <div>
+                    {showEmissionAd !== false && <button type="button" onClick={turnOffEmission} className="btn btn-outline-secondary mb-3">Show less</button>}
+                </div>
                 <Link to={"/Country/" + countryData.state.regionId} className="btn btn-primary mb-2">Back to Country</Link>
+                
             </div>
 
 
