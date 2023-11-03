@@ -38,12 +38,12 @@ function CardCountrySearch() {
                         key={regionData.regionId}
                         regionId={regionData.regionId}
                         regionName={regionData.regionName}
-                        countryCount={regionData.countryCount}
+                        countryCount={regionData.regionId === 0 ?  countryData.length : regionData.countryCount } // present number of country currently from fetching instead of 0 otherwise country count.
                         imageUrl={regionData.imageUrl}
                         />
                 </div>
             </div>
-            {regionData.countryCount > 1 && // will not show search bar if all country is selected since countryCount = 0
+            {regionData.countryCount > 1 || regionData.regionId === 0 && // will not show search bar if all country is selected since countryCount = 0 (fixed)
             <div id="cardCountrySearch"> 
                 <form method="post" onSubmit={handleSubmit} className="row justify-content-center mb-3  mt-2">
                     <div className="col-3">
