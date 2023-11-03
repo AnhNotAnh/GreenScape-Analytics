@@ -7,6 +7,9 @@ function CountryEmissionDetail() {
     let params = useParams();
     const [countryId, setCountryId] = useState(params.countryId)
     const [elementList, setElementList] = useState([]);
+    const [countryEmissionAd, setCountryEmissionAd] = useState([]);
+    let showEmissionAd = false;
+    const [countryId, setCountryId] = useState(params.countryId)
 
 
     useEffect(() => {
@@ -85,13 +88,39 @@ function CountryEmissionDetail() {
                                     <tr>
                                         <th scope="row">{obj.elementName}</th>
                                         <td>{obj.unit} </td>
-                                        <td> <Link to={"CountryEmissionAdvance/" +  obj.elementId } className="btn btn-primary mb-2">More</Link> </td>
+                                        <td><button type="button" value={obj.elementId} onClick={showEmissionData} class="btn btn-success">More</button>  </td>
                                     </tr>
                                 </tbody>))
                             }
                         </table>
                     </div>
                 </div>
+                {showEmissionAd !== false &&
+                <div className="container text-center">
+                    <div class="row justify-content-center mt-3">
+                        <div class="col">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Year</th>
+                                        <th scope="col">Item Name</th>
+                                        <th scope="col">Value</th>
+                                    </tr>
+                                </thead>
+                                {countryEmissionAd.map((obj) => (
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">{obj.year}</th>
+                                            <td>{obj.itemName} </td>
+                                            <td>{obj.value} </td>
+                                        </tr>
+                                    </tbody>))
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>}
+                
                 <Link to={"/Country/" + countryData.state.regionId} className="btn btn-primary mb-2">Back to Country</Link>
             </div>
 
