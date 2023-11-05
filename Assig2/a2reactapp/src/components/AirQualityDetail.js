@@ -5,6 +5,7 @@ function AirQualityDetail() {
     const cityData = useLocation();
     const [theCityDetail, setTheCityDetail] = useState([]);
     const [airQualityData, setAirQualityData] = useState([]);
+    const [stationType, setStationType] = useState([]);
     let params = useParams();
     const [cityId, setCityId] = useState(params.cityId)
 
@@ -12,7 +13,7 @@ function AirQualityDetail() {
         console.log("Component load useEffect()")
         fetch(`http://localhost:5256/api/C_Cities/GetAirQualityData/${cityId}`)
             .then(response => response.json())
-            .then(data => { setTheCityDetail(data.theCityDetail); setAirQualityData(data.theCityAirQualityData) })
+            .then(data => { setTheCityDetail(data.theCityDetail); setAirQualityData(data.theCityAirQualityData); setStationType(data.theCityAirQualityData.dataStationDetail) })
             .catch(err => {
                 console.log(err)
             })
@@ -38,7 +39,7 @@ function AirQualityDetail() {
                     </div>
                 </div> 
                 <div className="row justify-content-center mt-3">
-                    <h6 className="mt-3">Summary of Country's Air Quality by Year</h6>
+                    <h6 className="mt-3">Summary of Air Quality of {theCityDetail.countryName} by Year</h6>
                     <div className="col">
                         <table className="table table-bordered">
                             <thead>
@@ -69,29 +70,27 @@ function AirQualityDetail() {
                     </div>
                 </div>
                 <div className="row justify-content-center mt-3">
-                    <h6 className="mt-3">City's Air Quality each year</h6>
+                    <h6 className="mt-3">Air Quality of {theCityDetail.cityName} city each year</h6>
                     <div className="col">
                         <table className="table table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">Year</th>
-                                    <th scope="col">annualMean</th>
-                                    <th scope="col">temporalCoverage1</th>
-                                    <th scope="col">annualMeanPm10</th>
-                                    <th scope="col">annualMeanUgm3</th>
-                                    <th scope="col">temporalCoverage2</th>
-                                    <th scope="col">annualMeanPm25</th>
-                                    <th scope="col">reference</th>
-                                    <th scope="col">dbYear</th>
-                                    <th scope="col">stationType</th>
-                                    <th scope="col">stationNumber</th>
+                                    <th scope="col">Annual Mean</th>
+                                    <th scope="col">Temporal Coverage1</th>
+                                    <th scope="col">Annual Mean PM10</th>
+                                    <th scope="col">Annual Mean(Ugm3)</th>
+                                    <th scope="col">Temporal Coverage2</th>
+                                    <th scope="col">Annual Mean PM25</th>
+                                    <th scope="col">Reference</th>
+                                    <th scope="col">DB Year</th>
+                                    <th scope="col">Station Type</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {airQualityData.map((obj, index) => (
                                     <tr key={index}>
                                         <th scope="row">{obj.theAirQualityData.year}</th>
-                                        <td>{obj.theAirQualityData.year} </td>
                                         <td>{obj.theAirQualityData.annualMean} </td>
                                         <td>{obj.theAirQualityData.temporalCoverage1}</td>
                                         <td>{obj.theAirQualityData.annualMeanPm10}</td>
@@ -99,14 +98,36 @@ function AirQualityDetail() {
                                         <td>{obj.theAirQualityData.temporalCoverage2}</td>
                                         <td>{obj.theAirQualityData.annualMeanPm25}</td>
                                         <td>{obj.theAirQualityData.reference}</td>
-                                        <td>{obj.dataStationDetail.stationType}</td>
-                                        <td>{obj.dataStationDetail.stationNumber}</td>
+                                        <td>{obj.theAirQualityData.dbYear} </td>
+                                        <td>{obj.dataStationDetail.map((station, stationIndex) => (<p>{station.stationType }</p>))} </td>
                                     </tr>
                                 ))}
                             </tbody>     
                         </table>
                     </div>
                 </div>
+                {/*<div className="row justify-content-center mt-3">*/}
+                {/*    <h6 className="mt-3">Air Quality of {theCityDetail.cityName} city each year</h6>*/}
+                {/*    <div className="col">*/}
+                {/*        <table className="table table-bordered">*/}
+                {/*            <thead>*/}
+                {/*                <tr>*/}
+                {/*                    <th scope="col">Year</th>*/}
+                                    
+                {/*                    <th scope="col">Annual Mean</th>*/}
+                {/*                </tr>*/}
+                {/*            </thead>*/}
+                {/*            <tbody>*/}
+                {/*                {stationType && stationType.map((obj, index) => (*/}
+                {/*                    <tr key={index}>*/}
+                {/*                        <th scope="row">{obj.stationType}</th>*/}
+                {/*                        <td>{obj.stationNumber}</td>*/}
+                {/*                    </tr>*/}
+                {/*                ))}*/}
+                {/*            </tbody>*/}
+                {/*        </table>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
 
 
