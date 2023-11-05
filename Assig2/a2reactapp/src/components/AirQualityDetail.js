@@ -99,7 +99,7 @@ function AirQualityDetail() {
                                         <td>{obj.theAirQualityData.annualMeanPm25}</td>
                                         <td>{obj.theAirQualityData.reference}</td>
                                         <td>{obj.theAirQualityData.dbYear} </td>
-                                        <td>{obj.dataStationDetail.map((station, stationIndex) => (<p>{station.stationType }</p>))} </td>
+                                        <td>{obj.dataStationDetail.map((station, stationIndex) => (<p key={stationIndex }>{station.stationType }</p>))} </td>
                                     </tr>
                                 ))}
                             </tbody>     
@@ -110,22 +110,22 @@ function AirQualityDetail() {
                     <h6 className="mt-3">Stationary Detail of city each year</h6>
                     <div className="col">
                         {airQualityData.map((obj, index) => (
-                        <div key={index }>
-                        <p>Year: {obj.theAirQualityData.year}</p>
-                        <table className="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Stationary Type</th>
-                                    <th scope="col">Station Number</th>
-                                </tr>
-                            </thead>
-                            <tbody>  
+                        <div key={index}>
+                            <p>Year: {obj.theAirQualityData.year}</p>
+                            <table className="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Stationary Type</th>
+                                        <th scope="col">Station Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody>  
                                     {obj.dataStationDetail.map((station, stationIndex) => (
                                     <tr key={stationIndex}>
-                                            <th scope="row">{station.stationType}</th>
-                                            <td>{station.stationNumber}</td>
-                                    </tr>)) }
-                            </tbody>
+                                        <td>{station.stationType}</td>
+                                        <td>{station.stationNumber}</td>
+                                    </tr>))}
+                                </tbody>
                             </table>
                         </div>
                         ))}
