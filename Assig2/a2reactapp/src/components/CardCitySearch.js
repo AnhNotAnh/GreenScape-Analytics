@@ -64,7 +64,11 @@ function CardCountrySearch({ countryName, countryImage, regionName, regionId }) 
                             cityID={obj.cityID}
                             cityName={obj.cityName}
                             airQualityYearRange={obj.airQualityYearRange}
-                            recordCount={obj.recordCount }
+                            recordCount={obj.recordCount}
+                            regionName={regionName}
+                            countryName={countryName}
+                            countryImage={countryImage}
+                            countryId={countryId }
 
                         />
                     ))}

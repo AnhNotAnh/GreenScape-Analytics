@@ -66,8 +66,7 @@ function CountryEmissionDetail() {
                             </div>
                         </div>
                     </div>
-                </div>
-                
+                </div> 
                 <div className="row justify-content-center mt-3">
                     <h6 className="mt-3">Summary of emission data by year and element</h6>
                     <div className="col">
