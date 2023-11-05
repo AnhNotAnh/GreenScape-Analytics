@@ -4,7 +4,7 @@ import { useParams, Link} from "react-router-dom";
 
 
 
-function CardCountrySearch(countryName, countryImage, regionName) {
+function CardCountrySearch({ countryName, countryImage, regionName, regionId }) {
     let params = useParams();
     const [cardData, setCardData] = useState([]);
     const [query, setQuery] = useState('');
@@ -35,6 +35,18 @@ function CardCountrySearch(countryName, countryImage, regionName) {
     return (
         <>
             <div className="container text-center">
+                <div className="row justify-content-center">
+                    <div className="col-3">
+                        <div className="card mb-2" style={{ width: 18 + 'rem' }} >
+                            <img className="card-img-top" src={countryImage} alt={"Image of " + countryName} />
+                            <div className="card-body">
+                                <h5 className="card-title">Region name: {regionName}</h5> 
+                                <h5 className="card-title">Country name: {countryName}</h5> 
+                                <Link to={"/Country/" + regionId} className="btn btn-primary stretched-link">Back to country</Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div id="cardCountrySearch">
                     <form method="post" onSubmit={handleSubmit} className="row justify-content-center mb-3  mt-2">
                         <div className="col-3">

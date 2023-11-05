@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 
 const CardRegionCountry = ({ regionId, regionName, imageUrl, countryCount }) =>
-(<div className="col-3">
+(
+    <div className="col-3">
         <div className="card mb-2" style={{ width: 18 + 'rem' }} >
             <img className="card-img-top" src={imageUrl} alt={"Image of " + regionName} />
             <div className="card-body">

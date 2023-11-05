@@ -7,7 +7,7 @@ function City() {
             <div>
                 <h2>City</h2>
             </div>
-            <CardCitySearch countryName={cityData.state.countryName} countryImage={cityData.state.imageUrl} regionName={cityData.state.regionName} />
+            <CardCitySearch countryName={cityData.state.countryName} countryImage={cityData.state.countryImage} regionName={cityData.state.regionName} regionId={cityData.state.regionId} />
 
         </>
     )
