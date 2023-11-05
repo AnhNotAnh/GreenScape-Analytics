@@ -67,7 +67,9 @@ function CountryEmissionDetail() {
                         </div>
                     </div>
                 </div>
+                
                 <div className="row justify-content-center mt-3">
+                    <h6 className="mt-3">Summary of emission data by year and element</h6>
                     <div className="col">
                         <table className="table table-bordered">
                             <thead>
@@ -89,6 +91,7 @@ function CountryEmissionDetail() {
                     </div>
                 </div>
                 <div className="row justify-content-center mt-3">
+                    <h6 >List of element</h6>
                     <div className="col">
                         <table className="table table-bordered">
                             <thead>
@@ -128,7 +131,7 @@ function CountryEmissionDetail() {
                                          <th scope="row">{obj.year}</th>
                                          <td>{obj.itemName} </td>
                                          <td>{obj.value} </td>
-                                     </tr>)) : <tr><td colspan="3" className="table-active">Data is not available for this element, try different one !</td></tr>}
+                                     </tr>)) : <tr><td colSpan="3" className="table-active">Data is not available for this element, try different one !</td></tr>}
                             </tbody>
                             </table>
                         </div>
