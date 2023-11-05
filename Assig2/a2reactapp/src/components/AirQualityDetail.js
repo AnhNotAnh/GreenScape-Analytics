@@ -5,13 +5,13 @@ function AirQualityDetail() {
     const cityData = useLocation();
     const [theCityDetail, setTheCityDetail] = useState([]);
     let params = useParams();
-    const [cityId, setCityId] = useState(params.setCityId)
+    const [cityId, setCityId] = useState(params.cityId)
 
     useEffect(() => {
         console.log("Component load useEffect()")
         fetch(`http://localhost:5256/api/C_Cities/GetAirQualityData/${cityId}`)
             .then(response => response.json())
-            .then(data => setTheCityDetail(data))
+            .then(data => setTheCityDetail(data.theCityDetail))
             .catch(err => {
                 console.log(err)
             })
@@ -26,11 +26,11 @@ function AirQualityDetail() {
                 <div className="row justify-content-center mt-3">
                     <div className="col-3">
                         <div className="card mb-2" style={{ width: 18 + 'rem' }} >
-                            <img className="card-img-top" src={cityData.state.countryImage} alt={"Image of " + cityData.state.countryName} />
+                            <img className="card-img-top" src={theCityDetail.imageUrl} alt={"Image of " + theCityDetail.countryName} />
                             <div className="card-body">
-                                <p className="card-title">Region name: {cityData.state.regionName}</p>
-                                <p className="card-title">Country name: {cityData.state.countryName}</p>
-                                {/*<p className="card-title">City name: {cityData.state.regionName}</p>*/}
+                                <p className="card-title">Region name: {theCityDetail.regionName}</p>
+                                <p className="card-title">Country name: {theCityDetail.countryName}</p>
+                                <p className="card-title">City name: {theCityDetail.cityName}</p>
                             </div>
                         </div>
                     </div>
