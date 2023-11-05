@@ -106,28 +106,31 @@ function AirQualityDetail() {
                         </table>
                     </div>
                 </div>
-                {/*<div className="row justify-content-center mt-3">*/}
-                {/*    <h6 className="mt-3">Air Quality of {theCityDetail.cityName} city each year</h6>*/}
-                {/*    <div className="col">*/}
-                {/*        <table className="table table-bordered">*/}
-                {/*            <thead>*/}
-                {/*                <tr>*/}
-                {/*                    <th scope="col">Year</th>*/}
-                                    
-                {/*                    <th scope="col">Annual Mean</th>*/}
-                {/*                </tr>*/}
-                {/*            </thead>*/}
-                {/*            <tbody>*/}
-                {/*                {stationType && stationType.map((obj, index) => (*/}
-                {/*                    <tr key={index}>*/}
-                {/*                        <th scope="row">{obj.stationType}</th>*/}
-                {/*                        <td>{obj.stationNumber}</td>*/}
-                {/*                    </tr>*/}
-                {/*                ))}*/}
-                {/*            </tbody>*/}
-                {/*        </table>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+                <div className="row justify-content-center mt-3">
+                    <h6 className="mt-3">Stationary Detail of city each year</h6>
+                    <div className="col">
+                        {airQualityData.map((obj, index) => (
+                        <div key={index }>
+                        <p>Year: {obj.theAirQualityData.year}</p>
+                        <table className="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Stationary Type</th>
+                                    <th scope="col">Station Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>  
+                                    {obj.dataStationDetail.map((station, stationIndex) => (
+                                    <tr key={stationIndex}>
+                                            <th scope="row">{station.stationType}</th>
+                                            <td>{station.stationNumber}</td>
+                                    </tr>)) }
+                            </tbody>
+                            </table>
+                        </div>
+                        ))}
+                    </div>
+                </div>
             </div>
 
 
