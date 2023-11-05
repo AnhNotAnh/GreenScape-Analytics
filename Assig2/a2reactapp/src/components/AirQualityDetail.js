@@ -5,7 +5,7 @@ function AirQualityDetail() {
     const cityData = useLocation();
     const [theCityDetail, setTheCityDetail] = useState([]);
     const [airQualityData, setAirQualityData] = useState([]);
-    const [stationType, setStationType] = useState([]);
+    const [stationType, setStationType] = useState(false);
     let params = useParams();
     const [cityId, setCityId] = useState(params.cityId)
 
@@ -13,11 +13,18 @@ function AirQualityDetail() {
         console.log("Component load useEffect()")
         fetch(`http://localhost:5256/api/C_Cities/GetAirQualityData/${cityId}`)
             .then(response => response.json())
-            .then(data => { setTheCityDetail(data.theCityDetail); setAirQualityData(data.theCityAirQualityData); setStationType(data.theCityAirQualityData.dataStationDetail) })
+            .then(data => { setTheCityDetail(data.theCityDetail); setAirQualityData(data.theCityAirQualityData); })
             .catch(err => {
                 console.log(err)
             })
     }, [cityId]);
+
+    function showStationType() {
+        if (stationType === false) {
+            setStationType(true)
+        }
+        else setStationType(false)
+    }
 
     return (
         <>
@@ -106,31 +113,32 @@ function AirQualityDetail() {
                         </table>
                     </div>
                 </div>
-                <div className="row justify-content-center mt-3">
+                {stationType === true && <div className="row justify-content-center mt-3">
                     <h6 className="mt-3">Stationary Detail of city each year</h6>
                     <div className="col">
                         {airQualityData.map((obj, index) => (
-                        <div key={index}>
-                            <p>Year: {obj.theAirQualityData.year}</p>
-                            <table className="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Stationary Type</th>
-                                        <th scope="col">Station Number</th>
-                                    </tr>
-                                </thead>
-                                <tbody>  
-                                    {obj.dataStationDetail.map((station, stationIndex) => (
-                                    <tr key={stationIndex}>
-                                        <td>{station.stationType}</td>
-                                        <td>{station.stationNumber}</td>
-                                    </tr>))}
-                                </tbody>
-                            </table>
-                        </div>
+                            <div key={index}>
+                                <p>Year: {obj.theAirQualityData.year}</p>
+                                <table className="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Stationary Type</th>
+                                            <th scope="col">Station Number</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {obj.dataStationDetail.map((station, stationIndex) => (
+                                            <tr key={stationIndex}>
+                                                <td>{station.stationType}</td>
+                                                <td>{station.stationNumber}</td>
+                                            </tr>))}
+                                    </tbody>
+                                </table>
+                            </div>
                         ))}
                     </div>
-                </div>
+                </div>}
+                {stationType !== true ? <button type="button" onClick={showStationType} className="btn btn-success mb-3">Show more</button> : <button type="button" onClick={showStationType} className="btn btn-outline-secondary mb-3">Show less</button>}
             </div>
 
 
