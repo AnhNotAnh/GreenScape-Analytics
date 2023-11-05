@@ -33,7 +33,7 @@ function CountryEmissionDetail() {
 
 
     function showEmissionData(e) {
-        
+        if (showEmissionAd === false) { 
         setShowEmissionAd(true)
 
         const elementID = e.target.value
@@ -44,11 +44,10 @@ function CountryEmissionDetail() {
             .catch(err => {
                 console.log(err)
             })
+        }
+        else setShowEmissionAd(false)
     }
 
-    function turnOffEmission() {
-        setShowEmissionAd(false)
-    }
 
     return (
         <>
@@ -136,7 +135,7 @@ function CountryEmissionDetail() {
                         </div>
                     </div>}
                 <div>
-                    {showEmissionAd !== false && <button type="button" onClick={turnOffEmission} className="btn btn-outline-secondary mb-3">Show less</button>}
+                    {showEmissionAd !== false && <button type="button" onClick={showEmissionData} className="btn btn-outline-secondary mb-3">Show less</button>}
                 </div>
                 <Link to={"/Country/" + countryData.state.regionId} className="btn btn-primary mb-2">Back to Country</Link>
                 
