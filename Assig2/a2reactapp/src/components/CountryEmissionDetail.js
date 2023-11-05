@@ -60,8 +60,9 @@ function CountryEmissionDetail() {
                         <div className="card mb-2" style={{ width: 18 + 'rem' }} >
                             <img className="card-img-top" src={countryData.state.countryImage} alt={"Image of " + countryData.state.countryName} />
                             <div className="card-body">
-                                <h5 className="card-title">Region Name: {countryData.state.regionName}</h5>
-                                <h5 className="card-title">Country Name: {countryData.state.countryName}</h5>
+                                <p className="card-title">Region Name: {countryData.state.regionName}</p>
+                                <p className="card-title">Country Name: {countryData.state.countryName}</p>
+                                <Link to={"/Country/" + countryData.state.regionId} className="btn btn-primary mb-2">Back to Country</Link>
                             </div>
                         </div>
                     </div>
@@ -136,12 +137,8 @@ function CountryEmissionDetail() {
                     </div>}
                 <div>
                     {showEmissionAd !== false && <button type="button" onClick={showEmissionData} className="btn btn-outline-secondary mb-3">Show less</button>}
-                </div>
-                <Link to={"/Country/" + countryData.state.regionId} className="btn btn-primary mb-2">Back to Country</Link>
-                
+                </div> 
             </div>
-
-
         </>
     )
 }

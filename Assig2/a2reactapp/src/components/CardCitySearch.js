@@ -40,8 +40,8 @@ function CardCountrySearch({ countryName, countryImage, regionName, regionId }) 
                         <div className="card mb-2" style={{ width: 18 + 'rem' }} >
                             <img className="card-img-top" src={countryImage} alt={"Image of " + countryName} />
                             <div className="card-body">
-                                <h5 className="card-title">Region name: {regionName}</h5> 
-                                <h5 className="card-title">Country name: {countryName}</h5> 
+                                <p className="card-title">Region name: {regionName}</p> 
+                                <p className="card-title">Country name: {countryName}</p> 
                                 <Link to={"/Country/" + regionId} className="btn btn-primary stretched-link">Back to country</Link>
                             </div>
                         </div>

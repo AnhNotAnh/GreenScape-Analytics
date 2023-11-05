@@ -40,7 +40,7 @@ function AirQualityDetail() {
                                 <p className="card-title">Region name: {theCityDetail.regionName}</p>
                                 <p className="card-title">Country name: {theCityDetail.countryName}</p>
                                 <p className="card-title">City name: {theCityDetail.cityName}</p>
-                                <Link to={"/City/" + theCityDetail.countryID} state={{ countryName: theCityDetail.countryName, countryImage: theCityDetail.imageUrl, regionName: theCityDetail.regionName, regionId: theCityDetail.regionId }} className="btn btn-primary mt-2 stretched-link">Back to Country</Link>
+                                <Link to={"/City/" + theCityDetail.countryID} state={{ countryName: theCityDetail.countryName, countryImage: theCityDetail.imageUrl, regionName: theCityDetail.regionName, regionId: theCityDetail.regionId }} className="btn btn-primary mt-2 stretched-link">Back to City</Link>
                             </div>
                         </div>
                     </div>
