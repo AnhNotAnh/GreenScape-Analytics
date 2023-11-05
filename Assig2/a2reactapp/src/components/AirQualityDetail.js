@@ -32,10 +32,42 @@ function AirQualityDetail() {
                                 <p className="card-title">Region name: {theCityDetail.regionName}</p>
                                 <p className="card-title">Country name: {theCityDetail.countryName}</p>
                                 <p className="card-title">City name: {theCityDetail.cityName}</p>
+                                <Link to={"/City/" + theCityDetail.countryId} className="btn btn-primary mt-2 stretched-link">Back to Country</Link>
                             </div>
                         </div>
                     </div>
                 </div> 
+                <div class="row justify-content-center mt-3">
+                    <h6 className="mt-3">Summary of Country's Air Quality by Year</h6>
+                    <div class="col">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Year</th>
+                                    <th scope="col">Country PM10 Average</th>
+                                    <th scope="col">Country PM10 Min</th>
+                                    <th scope="col">Country PM10 Max</th>
+                                    <th scope="col">Country PM25 Average</th>
+                                    <th scope="col">Country PM25 Min</th>
+                                    <th scope="col">Country PM25 Max</th>
+                                </tr>
+                            </thead>
+                            {airQualityData.map((obj) => (
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">{obj.year}</th>
+                                        <td>{obj.countryPM10Avg} </td>
+                                        <td>{obj.countryPM10Min} </td>
+                                        <td>{obj.countryPM10Max}</td>
+                                        <td>{obj.countryPM25Avg }</td>
+                                        <td>{obj.countryPM25Min }</td>
+                                        <td>{obj.countryPM25Max }</td>
+                                    </tr>
+                                </tbody>))
+                            }
+                        </table>
+                    </div>
+                </div>
             </div>
 
 
