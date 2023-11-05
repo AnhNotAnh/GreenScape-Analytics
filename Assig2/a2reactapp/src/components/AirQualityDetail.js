@@ -68,6 +68,41 @@ function AirQualityDetail() {
                         </table>
                     </div>
                 </div>
+                <div class="row justify-content-center mt-3">
+                    <h6 className="mt-3">City's Air Quality each year</h6>
+                    <div class="col">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Year</th>
+                                    <th scope="col">annualMean</th>
+                                    <th scope="col">temporalCoverage1</th>
+                                    <th scope="col">annualMeanPm10</th>
+                                    <th scope="col">annualMeanUgm3</th>
+                                    <th scope="col">temporalCoverage2</th>
+                                    <th scope="col">annualMeanPm25</th>
+                                    <th scope="col">reference</th>
+                                    <th scope="col">dbYear</th>
+                                    <th scope="col">stationType</th>
+                                    <th scope="col">stationNumber</th>
+                                </tr>
+                            </thead>
+                            {airQualityData.map((obj) => (
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">{obj.year}</th>
+                                        <td>{obj.countryPM10Avg} </td>
+                                        <td>{obj.countryPM10Min} </td>
+                                        <td>{obj.countryPM10Max}</td>
+                                        <td>{obj.countryPM25Avg}</td>
+                                        <td>{obj.countryPM25Min}</td>
+                                        <td>{obj.countryPM25Max}</td>
+                                    </tr>
+                                </tbody>))
+                            }
+                        </table>
+                    </div>
+                </div>
             </div>
 
 
