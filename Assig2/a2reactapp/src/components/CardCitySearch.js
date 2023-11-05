@@ -4,7 +4,7 @@ import { useParams, Link} from "react-router-dom";
 
 
 
-function CardCountrySearch() {
+function CardCountrySearch(countryName, countryImage, regionName) {
     let params = useParams();
     const [cardData, setCardData] = useState([]);
     const [query, setQuery] = useState('');
@@ -34,17 +34,17 @@ function CardCountrySearch() {
 
     return (
         <>
-            <div id="cardCountrySearch">
-                <form method="post" onSubmit={handleSubmit} className="row justify-content-center mb-3  mt-2">
-                    <div className="col-3">
-                        <input type="text" name="searchText" className="form-control" placeholder="Item Search..." />
-                    </div>
-                    <div className="col-1 text-left">
-                        <button type="submit" className="btn btn-outline-info">Search</button>
-                    </div>
-                </form>
-            </div>
             <div className="container text-center">
+                <div id="cardCountrySearch">
+                    <form method="post" onSubmit={handleSubmit} className="row justify-content-center mb-3  mt-2">
+                        <div className="col-3">
+                            <input type="text" name="searchText" className="form-control" placeholder="Item Search..." />
+                        </div>
+                        <div className="col-1 text-left">
+                            <button type="submit" className="btn btn-outline-info">Search</button>
+                        </div>
+                    </form>
+                </div>
                 <div className="row justify-content-center">
                     {cardData.map((obj) => (
                         <CardCity
