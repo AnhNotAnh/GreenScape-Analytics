@@ -4,6 +4,7 @@ function AirQualityDetail() {
 
     const cityData = useLocation();
     const [theCityDetail, setTheCityDetail] = useState([]);
+    const [airQualityData, setAirQualityData] = useState([]);
     let params = useParams();
     const [cityId, setCityId] = useState(params.cityId)
 
@@ -11,7 +12,7 @@ function AirQualityDetail() {
         console.log("Component load useEffect()")
         fetch(`http://localhost:5256/api/C_Cities/GetAirQualityData/${cityId}`)
             .then(response => response.json())
-            .then(data => setTheCityDetail(data.theCityDetail))
+            .then(data => { setTheCityDetail(data.theCityDetail); setAirQualityData(data.theCityAirQualityData) })
             .catch(err => {
                 console.log(err)
             })
@@ -34,8 +35,7 @@ function AirQualityDetail() {
                             </div>
                         </div>
                     </div>
-                </div>
-                
+                </div> 
             </div>
 
 

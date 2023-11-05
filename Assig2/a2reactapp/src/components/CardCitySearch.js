@@ -65,7 +65,6 @@ function CardCountrySearch({ countryName, countryImage, regionName, regionId }) 
                             cityName={obj.cityName}
                             airQualityYearRange={obj.airQualityYearRange}
                             recordCount={obj.recordCount}
-
                         />
                     ))}
                 </div>
