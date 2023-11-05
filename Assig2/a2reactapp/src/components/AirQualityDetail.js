@@ -3,6 +3,19 @@ import { useParams, Link, useLocation } from "react-router-dom";
 function AirQualityDetail() {
 
     const cityData = useLocation();
+    const [theCityDetail, setTheCityDetail] = useState([]);
+    let params = useParams();
+    const [cityId, setCityId] = useState(params.setCityId)
+
+    useEffect(() => {
+        console.log("Component load useEffect()")
+        fetch(`http://localhost:5256/api/C_Cities/GetAirQualityData/${cityId}`)
+            .then(response => response.json())
+            .then(data => setTheCityDetail(data))
+            .catch(err => {
+                console.log(err)
+            })
+    }, [cityId]);
 
     return (
         <>
