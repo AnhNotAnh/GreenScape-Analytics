@@ -37,10 +37,10 @@ function AirQualityDetail() {
                         </div>
                     </div>
                 </div> 
-                <div class="row justify-content-center mt-3">
+                <div className="row justify-content-center mt-3">
                     <h6 className="mt-3">Summary of Country's Air Quality by Year</h6>
-                    <div class="col">
-                        <table class="table table-bordered">
+                    <div className="col">
+                        <table className="table table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">Year</th>
@@ -52,9 +52,9 @@ function AirQualityDetail() {
                                     <th scope="col">Country PM25 Max</th>
                                 </tr>
                             </thead>
-                            {airQualityData.map((obj) => (
-                                <tbody>
-                                    <tr>
+                            <tbody>
+                                {airQualityData.map((obj, index) => (
+                                    <tr key={index}>
                                         <th scope="row">{obj.year}</th>
                                         <td>{obj.countryPM10Avg} </td>
                                         <td>{obj.countryPM10Min} </td>
@@ -63,15 +63,15 @@ function AirQualityDetail() {
                                         <td>{obj.countryPM25Min }</td>
                                         <td>{obj.countryPM25Max }</td>
                                     </tr>
-                                </tbody>))
-                            }
+                                ))}
+                            </tbody> 
                         </table>
                     </div>
                 </div>
-                <div class="row justify-content-center mt-3">
+                <div className="row justify-content-center mt-3">
                     <h6 className="mt-3">City's Air Quality each year</h6>
-                    <div class="col">
-                        <table class="table table-bordered">
+                    <div className="col">
+                        <table className="table table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">Year</th>
@@ -87,19 +87,23 @@ function AirQualityDetail() {
                                     <th scope="col">stationNumber</th>
                                 </tr>
                             </thead>
-                            {airQualityData.map((obj) => (
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">{obj.year}</th>
-                                        <td>{obj.countryPM10Avg} </td>
-                                        <td>{obj.countryPM10Min} </td>
-                                        <td>{obj.countryPM10Max}</td>
-                                        <td>{obj.countryPM25Avg}</td>
-                                        <td>{obj.countryPM25Min}</td>
-                                        <td>{obj.countryPM25Max}</td>
+                            <tbody>
+                                {airQualityData.map((obj, index) => (
+                                    <tr key={index}>
+                                        <th scope="row">{obj.theAirQualityData.year}</th>
+                                        <td>{obj.theAirQualityData.year} </td>
+                                        <td>{obj.theAirQualityData.annualMean} </td>
+                                        <td>{obj.theAirQualityData.temporalCoverage1}</td>
+                                        <td>{obj.theAirQualityData.annualMeanPm10}</td>
+                                        <td>{obj.theAirQualityData.annualMeanUgm3}</td>
+                                        <td>{obj.theAirQualityData.temporalCoverage2}</td>
+                                        <td>{obj.theAirQualityData.annualMeanPm25}</td>
+                                        <td>{obj.theAirQualityData.reference}</td>
+                                        <td>{obj.dataStationDetail.stationType}</td>
+                                        <td>{obj.dataStationDetail.stationNumber}</td>
                                     </tr>
-                                </tbody>))
-                            }
+                                ))}
+                            </tbody>     
                         </table>
                     </div>
                 </div>
