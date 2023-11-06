@@ -1,5 +1,5 @@
 
-function test() {
+function Home() {
     return (
         <>
             <div>
@@ -9,4 +9,4 @@ function test() {
     )
 }
 
-export default test
+export default Home

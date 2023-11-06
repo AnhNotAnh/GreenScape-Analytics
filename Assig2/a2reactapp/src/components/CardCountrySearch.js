@@ -35,7 +35,7 @@ function CardCountrySearch() {
                 <div className="row justify-content-center">
                     <div className="col-3">
                         <div className="card mb-2" style={{ width: 18 + 'rem' }} >
-                            <img className="card-img-top" src={regionData.imageUrl} alt={"Image of " + regionData.regionName} />
+                            <img className="card-img-top" src={regionData.regionId === 0 ? "https://th.bing.com/th/id/OIP.vmOLNNSaYrF1wZQ_JewEcAHaE8?pid=ImgDet&rs=1" : regionData.imageUrl} alt={"Image of " + regionData.regionName} />
                             <div className="card-body">
                                 <h5 className="card-title">Name: {regionData.regionName}</h5>
                                 {/* present number of country currently from fetching instead of 0 (all/ no region selected, country count = 0) otherwise country count*/}
