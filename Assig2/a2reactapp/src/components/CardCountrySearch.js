@@ -40,7 +40,7 @@ function CardCountrySearch() {
                         regionName={regionData.regionName}
                         countryCount={regionData.regionId === 0 ?  countryData.length : regionData.countryCount } // present number of country currently from fetching instead of 0 otherwise country count.
                         imageUrl={regionData.imageUrl}
-                        />
+                    />
                 </div>
             </div>
             {(regionData.countryCount > 1 || regionData.regionId === 0) && // will not show search bar unless more than one countries. If 'all regions' or no region is selected, search bar will be shown anyway.
@@ -69,27 +69,10 @@ function CardCountrySearch() {
                             regionId={regionId}
                             regionName={regionData.regionName}
                         />
-                        //<div className="col-3">
-                        //    <div className="card mb-2" style={{ width: 18 + 'rem' }} >
-                        //        <img className="card-img-top" src={obj.imageUrl} alt={"Image of " + obj.countryName} />
-                        //        <div className="card-body">
-                        //            <h5 className="card-title">Name: {obj.countryName}</h5>
-                        //            <p className="card-text">ISO3: {obj.iso3}</p>
-                        //            <p className="card-text">City count: {obj.cityCount}</p>
-                        //            {obj.temperatureDataYearRange[0] !== 0 && <Link to={"/Country/CountryTemperatureDetail/" + regionId + "/" + obj.countryId} className="btn btn-primary ">View Country Temperature {obj.temperatureDataYearRange[0]} - {obj.temperatureDataYearRange[1]}</Link>}
-                        //            {obj.emissionDataYearRange[0] !== 0 && <Link to={"/Country/CountryEmissionDetail/" + obj.countryId} className="btn btn-warning mt-2 ">View Country Emission {obj.emissionDataYearRange[0]} - {obj.emissionDataYearRange[1]}</Link>}
-                        //            <Link to={"/City/" + obj.countryId} className="btn btn-info mt-2">City</Link>
-                        //        </div>
-                        //    </div>
-                        //</div>
-
-                    )
-                    )
-                    }
+                    ))}
                 </div>
             </div>
         </>
-
     )
 }
 
