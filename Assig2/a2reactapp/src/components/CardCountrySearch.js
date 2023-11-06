@@ -1,5 +1,4 @@
 import CardCountry from './CardCountry'
-import CardRegionCountry from './CardRegionCountry'
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from "react-router-dom";
 
@@ -39,18 +38,12 @@ function CardCountrySearch() {
                             <img className="card-img-top" src={regionData.imageUrl} alt={"Image of " + regionData.regionName} />
                             <div className="card-body">
                                 <h5 className="card-title">Name: {regionData.regionName}</h5>
-                                <p className="card-text">Country count: {regionData.regionId === 0 ? countryData.length : regionData.countryCount} </p> 
+                                {/* present number of country currently from fetching instead of 0 (all/ no region selected, country count = 0) otherwise country count*/}
+                                <p className="card-text">Country count: {regionData.regionId === 0 ? countryData.length : regionData.countryCount} </p>  
                                 <Link to={"/Region"} className="btn btn-primary stretched-link">Back to Region</Link>
                             </div>
                         </div>
                     </div>
-                    {/*<CardRegionCountry*/}
-                    {/*    key={regionData.regionId}*/}
-                    {/*    regionId={regionData.regionId}*/}
-                    {/*    regionName={regionData.regionName}*/}
-                    {/*    countryCount={regionData.regionId === 0 ?  countryData.length : regionData.countryCount } // present number of country currently from fetching instead of 0 otherwise country count.*/}
-                    {/*    imageUrl={regionData.imageUrl}*/}
-                    {/*/>*/}
                 </div>
             </div>
             {(regionData.countryCount > 1 || regionData.regionId === 0) && // will not show search bar unless more than one countries. If 'all regions' or no region is selected, search bar will be shown anyway.
