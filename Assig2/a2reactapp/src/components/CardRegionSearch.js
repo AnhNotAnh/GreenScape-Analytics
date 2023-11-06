@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react'
 function CardListSearch() {
 
     const [cardData, setCardData] = useState([]);
-    const [query, setQuery] = useState('');
 
     useEffect(() => {
         console.log("Component load useEffect()")
@@ -16,8 +15,6 @@ function CardListSearch() {
                 console.log(err)
             })
     }, []);
-
-   
 
     return (
         <>
