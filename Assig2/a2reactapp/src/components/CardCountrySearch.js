@@ -34,13 +34,23 @@ function CardCountrySearch() {
         <>
             <div className="container text-center">
                 <div className="row justify-content-center">
-                    <CardRegionCountry
-                        key={regionData.regionId}
-                        regionId={regionData.regionId}
-                        regionName={regionData.regionName}
-                        countryCount={regionData.regionId === 0 ?  countryData.length : regionData.countryCount } // present number of country currently from fetching instead of 0 otherwise country count.
-                        imageUrl={regionData.imageUrl}
-                    />
+                    <div className="col-3">
+                        <div className="card mb-2" style={{ width: 18 + 'rem' }} >
+                            <img className="card-img-top" src={regionData.imageUrl} alt={"Image of " + regionData.regionName} />
+                            <div className="card-body">
+                                <h5 className="card-title">Name: {regionData.regionName}</h5>
+                                <p className="card-text">Country count: {regionData.regionId === 0 ? countryData.length : regionData.countryCount} </p> 
+                                <Link to={"/Region"} className="btn btn-primary stretched-link">Back to Region</Link>
+                            </div>
+                        </div>
+                    </div>
+                    {/*<CardRegionCountry*/}
+                    {/*    key={regionData.regionId}*/}
+                    {/*    regionId={regionData.regionId}*/}
+                    {/*    regionName={regionData.regionName}*/}
+                    {/*    countryCount={regionData.regionId === 0 ?  countryData.length : regionData.countryCount } // present number of country currently from fetching instead of 0 otherwise country count.*/}
+                    {/*    imageUrl={regionData.imageUrl}*/}
+                    {/*/>*/}
                 </div>
             </div>
             {(regionData.countryCount > 1 || regionData.regionId === 0) && // will not show search bar unless more than one countries. If 'all regions' or no region is selected, search bar will be shown anyway.
