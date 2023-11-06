@@ -29,7 +29,7 @@ function CountryTemperatureDetail() {
                 <h2>Country Temperature Data From {maxYear} to {minYear}</h2>
             </div>
             <div className="container text-center">
-                <div class="row justify-content-center mt-3">
+                <div className="row justify-content-center mt-3">
                     <div className="col-3">
                         <div className="card mb-2" style={{ width: 18 + 'rem' }} >
                             <img className="card-img-top" src={countryData.state.countryImage} alt={"Image of " + countryData.state.countryName} />
@@ -41,9 +41,9 @@ function CountryTemperatureDetail() {
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-center mt-3">
-                    <div class="col">
-                        <table class="table table-bordered">
+                <div className="row justify-content-center mt-3">
+                    <div className="col">
+                        <table className="table table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">Year</th>
@@ -55,9 +55,9 @@ function CountryTemperatureDetail() {
                                     <th scope="col">Regional Maximum</th>
                                 </tr>
                             </thead>
-                            {countryTemData.map((obj) => (
                                 <tbody>
-                                    <tr>
+                                {countryTemData.map((obj, index) => (
+                                    <tr key={index}>
                                         <th scope="row">{obj.theCountryTempData.year}</th>
                                         <td>{obj.theCountryTempData.unit} </td>
                                         <td>{obj.theCountryTempData.change} </td>
@@ -66,8 +66,8 @@ function CountryTemperatureDetail() {
                                         <td>{obj.regionalMin != null ? obj.regionalMin : "No values"}</td>
                                         <td>{obj.regionalMax != null ? obj.regionalMax : "No values"}</td>
                                     </tr>
-                                </tbody>))
-                            }
+                                ))}
+                                </tbody>
                         </table>
                     </div>
                 </div>
