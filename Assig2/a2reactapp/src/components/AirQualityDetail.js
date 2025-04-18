@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link, useLocation } from "react-router-dom";
-function AirQualityDetail() {
 
+function AirQualityDetail() {
     const cityData = useLocation();
     const [theCityDetail, setTheCityDetail] = useState([]);
     const [airQualityData, setAirQualityData] = useState([]);
@@ -28,122 +28,198 @@ function AirQualityDetail() {
 
     return (
         <>
-            <div>
-                <h2>Air Quality Detail</h2>
-            </div>
-            <div className="container text-center">
-                <div className="row justify-content-center mt-3">
-                    <div className="col-3">
-                        <div className="card mb-2" style={{ width: 18 + 'rem' }} >
-                            <img className="card-img-top" src={theCityDetail.imageUrl} alt={"Image of " + theCityDetail.countryName} />
-                            <div className="card-body">
-                                <p className="card-title">Region name: {theCityDetail.regionName}</p>
-                                <p className="card-title">Country name: {theCityDetail.countryName}</p>
-                                <p className="card-title">City name: {theCityDetail.cityName}</p>
-                                <Link to={"/City/" + theCityDetail.countryID} state={{ countryName: theCityDetail.countryName, countryImage: theCityDetail.imageUrl, regionName: theCityDetail.regionName, regionId: theCityDetail.regionId }} className="btn btn-primary mt-2 stretched-link">Back to City</Link>
+            <div className="container-fluid py-4 bg-light">
+                <div className="container">
+                    <h2 className="text-center mb-4">
+                        <i className="bi bi-wind me-2"></i>
+                        Air Quality Detail
+                    </h2>
+                    
+                    <div className="row">
+                        {/* City Card */}
+                        <div className="col-md-4 mb-4">
+                            <div className="card shadow-sm hover-card h-100">
+                                <img className="card-img-top" 
+                                    src={theCityDetail.imageUrl} 
+                                    alt={`Image of ${theCityDetail.countryName}`}
+                                    style={{height: '200px', objectFit: 'cover'}} 
+                                />
+                                <div className="card-body">
+                                    <div className="d-flex align-items-center mb-3">
+                                        <i className="bi bi-geo-alt-fill text-primary me-2"></i>
+                                        <h5 className="card-title mb-0">{theCityDetail.cityName}</h5>
+                                    </div>
+                                    
+                                    <div className="d-flex align-items-center mb-2">
+                                        <i className="bi bi-flag-fill text-secondary me-2"></i>
+                                        <p className="card-text mb-0">{theCityDetail.countryName}</p>
+                                    </div>
+                                    
+                                    <div className="d-flex align-items-center mb-3">
+                                        <i className="bi bi-globe2 text-info me-2"></i>
+                                        <p className="card-text mb-0">{theCityDetail.regionName}</p>
+                                    </div>
+                                    
+                                    <Link 
+                                        to={"/City/" + theCityDetail.countryID} 
+                                        state={{ 
+                                            countryName: theCityDetail.countryName, 
+                                            countryImage: theCityDetail.imageUrl, 
+                                            regionName: theCityDetail.regionName, 
+                                            regionId: theCityDetail.regionId 
+                                        }} 
+                                        className="btn btn-outline-primary w-100"
+                                    >
+                                        <i className="bi bi-arrow-left me-2"></i>
+                                        Back to City List
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {/* Air Quality Summary */}
+                        <div className="col-md-8 mb-4">
+                            <div className="card shadow-sm h-100">
+                                <div className="card-header bg-primary text-white">
+                                    <h5 className="mb-0">
+                                        <i className="bi bi-bar-chart-fill me-2"></i>
+                                        Summary of Air Quality by Year
+                                    </h5>
+                                </div>
+                                <div className="card-body table-responsive">
+                                    <table className="table table-hover">
+                                        <thead className="table-light">
+                                            <tr>
+                                                <th scope="col">Year</th>
+                                                <th scope="col">PM10 Avg</th>
+                                                <th scope="col">PM10 Min</th>
+                                                <th scope="col">PM10 Max</th>
+                                                <th scope="col">PM25 Avg</th>
+                                                <th scope="col">PM25 Min</th>
+                                                <th scope="col">PM25 Max</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {airQualityData.map((obj, index) => (
+                                                <tr key={index}>
+                                                    <th scope="row">{obj.year}</th>
+                                                    <td>{obj.countryPM10Avg}</td>
+                                                    <td>{obj.countryPM10Min}</td>
+                                                    <td>{obj.countryPM10Max}</td>
+                                                    <td>{obj.countryPM25Avg}</td>
+                                                    <td>{obj.countryPM25Min}</td>
+                                                    <td>{obj.countryPM25Max}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody> 
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div> 
-                <div className="row justify-content-center mt-3">
-                    <h6 className="mt-3">Summary of Air Quality of {theCityDetail.countryName} by Year</h6>
-                    <div className="col">
-                        <table className="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Year</th>
-                                    <th scope="col">Country PM10 Average</th>
-                                    <th scope="col">Country PM10 Min</th>
-                                    <th scope="col">Country PM10 Max</th>
-                                    <th scope="col">Country PM25 Average</th>
-                                    <th scope="col">Country PM25 Min</th>
-                                    <th scope="col">Country PM25 Max</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {airQualityData.map((obj, index) => (
-                                    <tr key={index}>
-                                        <th scope="row">{obj.year}</th>
-                                        <td>{obj.countryPM10Avg} </td>
-                                        <td>{obj.countryPM10Min} </td>
-                                        <td>{obj.countryPM10Max}</td>
-                                        <td>{obj.countryPM25Avg }</td>
-                                        <td>{obj.countryPM25Min }</td>
-                                        <td>{obj.countryPM25Max }</td>
+                    
+                    {/* Detailed Air Quality Data */}
+                    <div className="card shadow-sm mb-4">
+                        <div className="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                            <h5 className="mb-0">
+                                <i className="bi bi-info-circle me-2"></i>
+                                Air Quality of {theCityDetail.cityName} by Year
+                            </h5>
+                        </div>
+                        <div className="card-body table-responsive">
+                            <table className="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Year</th>
+                                        <th scope="col">Annual Mean</th>
+                                        <th scope="col">Temporal Coverage1</th>
+                                        <th scope="col">Annual Mean PM10</th>
+                                        <th scope="col">Annual Mean(Ugm3)</th>
+                                        <th scope="col">Temporal Coverage2</th>
+                                        <th scope="col">Annual Mean PM25</th>
+                                        <th scope="col">Reference</th>
+                                        <th scope="col">DB Year</th>
+                                        <th scope="col">Station Type</th>
                                     </tr>
-                                ))}
-                            </tbody> 
-                        </table>
-                    </div>
-                </div>
-                <div className="row justify-content-center mt-3">
-                    <h6 className="mt-3">Air Quality of {theCityDetail.cityName} city each year</h6>
-                    <div className="col">
-                        <table className="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Year</th>
-                                    <th scope="col">Annual Mean</th>
-                                    <th scope="col">Temporal Coverage1</th>
-                                    <th scope="col">Annual Mean PM10</th>
-                                    <th scope="col">Annual Mean(Ugm3)</th>
-                                    <th scope="col">Temporal Coverage2</th>
-                                    <th scope="col">Annual Mean PM25</th>
-                                    <th scope="col">Reference</th>
-                                    <th scope="col">DB Year</th>
-                                    <th scope="col">Station Type</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {airQualityData.map((obj, index) => (
-                                    <tr key={index}>
-                                        <th scope="row">{obj.theAirQualityData.year}</th>
-                                        <td>{obj.theAirQualityData.annualMean} </td>
-                                        <td>{obj.theAirQualityData.temporalCoverage1}</td>
-                                        <td>{obj.theAirQualityData.annualMeanPm10}</td>
-                                        <td>{obj.theAirQualityData.annualMeanUgm3}</td>
-                                        <td>{obj.theAirQualityData.temporalCoverage2}</td>
-                                        <td>{obj.theAirQualityData.annualMeanPm25}</td>
-                                        <td>{obj.theAirQualityData.reference}</td>
-                                        <td>{obj.theAirQualityData.dbYear} </td>
-                                        <td>{obj.dataStationDetail.map((station, stationIndex) => (<p key={stationIndex }>{station.stationType }</p>))} </td>
-                                    </tr>
-                                ))}
-                            </tbody>     
-                        </table>
-                    </div>
-                </div>
-                {stationType === true && <div className="row justify-content-center mt-3">
-                    <h6 className="mt-3">Stationary Detail of city each year</h6>
-                    <div className="col">
-                        {airQualityData.map((obj, index) => (
-                            <div key={index}>
-                                <p>Year: {obj.theAirQualityData.year}</p>
-                                <table className="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Stationary Type</th>
-                                            <th scope="col">Station Number</th>
+                                </thead>
+                                <tbody>
+                                    {airQualityData.map((obj, index) => (
+                                        <tr key={index}>
+                                            <th scope="row">{obj.theAirQualityData.year}</th>
+                                            <td>{obj.theAirQualityData.annualMean}</td>
+                                            <td>{obj.theAirQualityData.temporalCoverage1}</td>
+                                            <td>{obj.theAirQualityData.annualMeanPm10}</td>
+                                            <td>{obj.theAirQualityData.annualMeanUgm3}</td>
+                                            <td>{obj.theAirQualityData.temporalCoverage2}</td>
+                                            <td>{obj.theAirQualityData.annualMeanPm25}</td>
+                                            <td>{obj.theAirQualityData.reference}</td>
+                                            <td>{obj.theAirQualityData.dbYear}</td>
+                                            <td>
+                                                {obj.dataStationDetail.map((station, stationIndex) => (
+                                                    <span key={stationIndex} className="badge bg-secondary me-1">{station.stationType}</span>
+                                                ))}
+                                            </td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        {obj.dataStationDetail.map((station, stationIndex) => (
-                                            <tr key={stationIndex}>
-                                                <td>{station.stationType}</td>
-                                                <td>{station.stationNumber}</td>
-                                            </tr>))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        ))}
+                                    ))}
+                                </tbody>     
+                            </table>
+                        </div>
                     </div>
-                </div>}
-                {stationType !== true ? <button type="button" onClick={showStationType} className="btn btn-success mb-3">Show more</button> : <button type="button" onClick={showStationType} className="btn btn-outline-secondary mb-3">Show less</button>}
+                    
+                    {/* Station Type Details (Collapsible) */}
+                    {stationType && (
+                        <div className="card shadow-sm mb-4 border-info">
+                            <div className="card-header bg-light">
+                                <h5 className="mb-0">
+                                    <i className="bi bi-building me-2"></i>
+                                    Station Details by Year
+                                </h5>
+                            </div>
+                            <div className="card-body">
+                                {airQualityData.map((obj, index) => (
+                                    <div key={index} className="mb-4">
+                                        <div className="d-flex align-items-center mb-2">
+                                            <i className="bi bi-calendar-event me-2 text-primary"></i>
+                                            <h6 className="mb-0">Year: {obj.theAirQualityData.year}</h6>
+                                        </div>
+                                        <div className="table-responsive">
+                                            <table className="table table-sm table-bordered">
+                                                <thead className="table-light">
+                                                    <tr>
+                                                        <th scope="col">Station Type</th>
+                                                        <th scope="col">Station Number</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {obj.dataStationDetail.map((station, stationIndex) => (
+                                                        <tr key={stationIndex}>
+                                                            <td>{station.stationType}</td>
+                                                            <td>{station.stationNumber}</td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                    
+                    <div className="d-flex justify-content-center">
+                        <button 
+                            type="button" 
+                            onClick={showStationType} 
+                            className={`btn ${stationType ? 'btn-outline-secondary' : 'btn-outline-info'} px-4`}
+                        >
+                            <i className={`bi ${stationType ? 'bi-chevron-up' : 'bi-chevron-down'} me-2`}></i>
+                            {stationType ? 'Hide Station Details' : 'Show Station Details'}
+                        </button>
+                    </div>
+                </div>
             </div>
-
-
         </>
-    )
+    );
 }
 
 export default AirQualityDetail
