@@ -32,10 +32,8 @@ function CountryEmissionDetail() {
     }, []);
 
 
-    function showEmissionData(e) {
+    function showEmissionData(elementID) {
         setShowEmissionAd(true)
-
-        const elementID = e.target.value
 
         fetch(`http://localhost:5256/api/B_Countries/CountryEmissionData/${countryId}?elementId=${elementID}`)
             .then(response => response.json())
@@ -106,7 +104,7 @@ function CountryEmissionDetail() {
                                         <th scope="row">{obj.elementName}</th>
                                         <td>{obj.unit} </td>
                                         <td>
-                                            <button type="button" value={obj.elementId} onClick={showEmissionData} className="btn btn-success">Show more</button>    
+                                            <button type="button" onClick={() => showEmissionData(obj.elementId)} className="btn btn-success">Show more</button>    
                                         </td>
                                     </tr>))}
                             </tbody>
