@@ -11,7 +11,7 @@ function EmissionGraph({ data, width = 800, height = 400 }) {
     d3.select(svgRef.current).selectAll("*").remove();
 
     // Setup margins
-    const margin = { top: 40, right: 100, bottom: 60, left: 70 };
+    const margin = { top: 40, right: 100, bottom: 60, left: 100 };
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
@@ -67,7 +67,7 @@ function EmissionGraph({ data, width = 800, height = 400 }) {
     svg.append("text")
       .attr("transform", "rotate(-90)")
       .attr("x", -innerHeight / 2)
-      .attr("y", -45)
+      .attr("y", -80)
       .style("text-anchor", "middle")
       .text("Emission Value");
 

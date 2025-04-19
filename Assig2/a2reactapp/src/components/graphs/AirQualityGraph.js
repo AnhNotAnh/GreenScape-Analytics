@@ -11,7 +11,7 @@ function AirQualityGraph({ data, width = 800, height = 400 }) {
     d3.select(svgRef.current).selectAll("*").remove();
 
     // Setup margins
-    const margin = { top: 40, right: 80, bottom: 60, left: 60 };
+    const margin = { top: 40, right: 90, bottom: 60, left: 60 };
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
@@ -182,7 +182,7 @@ function AirQualityGraph({ data, width = 800, height = 400 }) {
     legend.append("text")
       .attr("x", 20)
       .attr("y", 12)
-      .text("PM10 Average")
+      .text("PM10 Avg")
       .style("font-size", "12px");
 
     // PM2.5 legend item
@@ -196,7 +196,7 @@ function AirQualityGraph({ data, width = 800, height = 400 }) {
     legend.append("text")
       .attr("x", 20)
       .attr("y", 37)
-      .text("PM2.5 Average")
+      .text("PM2.5 Avg")
       .style("font-size", "12px");
 
   }, [data, width, height]);

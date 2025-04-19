@@ -135,10 +135,31 @@ function CountryTemperatureDetail() {
                                         </tbody>
                                     </table>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
-                    
+                    {/* About Temperature Data section (preserved from original) */}
+                    <div className="card shadow-sm mb-4">
+                        <div className="card-header bg-primary text-white">
+                            <h5 className="mb-0">
+                                <i className="bi bi-info-circle me-2"></i>
+                                About Temperature Data
+                            </h5>
+                        </div>
+                        <div className="card-body">
+                            <div className="alert alert-info">
+                                <div className="d-flex align-items-center">
+                                    <i className="bi bi-lightbulb me-3 fs-3"></i>
+                                    <div>
+                                        <h5>Understanding Temperature Data</h5>
+                                        <p>Temperature data shows historical climate trends for {countryData.state.countryName}. Positive change values (red) indicate warming, while negative values (blue) indicate cooling compared to baseline.</p>
+                                        <p className="mb-0">Regional averages, minimums, and maximums provide context for how this country compares to others in the {countryData.state.regionName} region.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {/* Temperature Graph Visualization */}
                     <div className="card shadow-sm mb-4">
                         <div className="card-header bg-primary text-white">
@@ -171,28 +192,6 @@ function CountryTemperatureDetail() {
                                             <p>The graph above shows temperature changes over time for {countryData.state.countryName}, with the red line showing the country's temperature and the blue dashed line showing the regional average.</p>
                                             <p className="mb-0">Positive values indicate warming compared to baseline temperatures, while negative values indicate cooling.</p>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    {/* About Temperature Data section (preserved from original) */}
-                    <div className="card shadow-sm mb-4">
-                        <div className="card-header bg-primary text-white">
-                            <h5 className="mb-0">
-                                <i className="bi bi-info-circle me-2"></i>
-                                About Temperature Data
-                            </h5>
-                        </div>
-                        <div className="card-body">
-                            <div className="alert alert-info">
-                                <div className="d-flex align-items-center">
-                                    <i className="bi bi-lightbulb me-3 fs-3"></i>
-                                    <div>
-                                        <h5>Understanding Temperature Data</h5>
-                                        <p>Temperature data shows historical climate trends for {countryData.state.countryName}. Positive change values (red) indicate warming, while negative values (blue) indicate cooling compared to baseline.</p>
-                                        <p className="mb-0">Regional averages, minimums, and maximums provide context for how this country compares to others in the {countryData.state.regionName} region.</p>
                                     </div>
                                 </div>
                             </div>

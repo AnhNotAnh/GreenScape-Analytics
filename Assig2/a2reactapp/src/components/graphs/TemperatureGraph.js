@@ -11,7 +11,7 @@ function TemperatureGraph({ data, width = 800, height = 400 }) {
     d3.select(svgRef.current).selectAll("*").remove();
 
     // Setup margins
-    const margin = { top: 30, right: 80, bottom: 60, left: 60 };
+    const margin = { top: 30, right: 150, bottom: 60, left: 70 };
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
