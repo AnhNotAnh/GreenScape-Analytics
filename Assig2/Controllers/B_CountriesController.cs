@@ -250,5 +250,41 @@ namespace Assig2.Controllers
             return elementList;
         }
 
+        /// <summary>
+        /// Gets the region details for a specific country
+        /// </summary>
+        /// <param name="countryId">The country ID to get the region for</param>
+        /// <returns>The region details for the specified country</returns>
+        // GET: /api/B_Countries/{countryId}/region
+        [HttpGet]
+        [Route("{countryId}/region")]
+        public async Task<ActionResult<object>> GetCountryRegion(int countryId)
+        {
+            if (_context.Countries == null)
+            {
+                return NotFound();
+            }
+
+            var country = await _context.Countries
+                .Include(c => c.Region)
+                .FirstOrDefaultAsync(c => c.CountryId == countryId);
+
+            if (country == null)
+            {
+                return NotFound();
+            }
+
+            if (country.Region == null)
+            {
+                return NotFound("No region found for this country");
+            }
+
+            return new 
+            {
+                regionId = country.Region.RegionId,
+                regionName = country.Region.RegionName,
+                imageUrl = country.Region.ImageUrl
+            };
+        }
     }
 }

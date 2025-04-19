@@ -9,18 +9,62 @@ function CountryTemperatureDetail() {
     const [maxYear, setMaxYear] = useState([]);
     const [countryId, setCountryId] = useState(params.countryId)
     const countryData = useLocation();
-    
+    // Add new state variables for the country's actual region info
+    const [actualRegionName, setActualRegionName] = useState(countryData.state?.regionName || "");
+    const [actualRegionId, setActualRegionId] = useState(countryData.state?.regionId || 0);
+    const [isLoading, setIsLoading] = useState(true);
 
+    // Fetch temperature data
     useEffect(() => {
         console.log("Component load useEffect()")
+        setIsLoading(true);
         fetch(`http://localhost:5256/api/B_Countries/CountryTemperatureDetail/${countryId}`)
             .then(response => response.json())
-            .then(data => { setMinYear(data.minYear); setMaxYear(data.maxYear); setCountryTemData(data.rawTemperatureData) })
+            .then(data => { 
+                setMinYear(data.minYear); 
+                setMaxYear(data.maxYear); 
+                setCountryTemData(data.rawTemperatureData);
+                
+                // If there's data and it has country information with region
+                if (data.rawTemperatureData && data.rawTemperatureData.length > 0) {
+                    // Let's also check and fetch actual region data if needed
+                    fetchActualRegionData();
+                } else {
+                    setIsLoading(false);
+                }
+            })
             .catch(err => {
-                console.log(err)
+                console.log(err);
+                setIsLoading(false);
             })
     }, [countryId]);
 
+    // New function to fetch the actual region data for this country
+    const fetchActualRegionData = () => {
+        // Only fetch if we think we need to (coming from "All regions" view)
+        if (countryData.state?.regionName === "All Regions and Countries" || !countryData.state?.regionName) {
+            fetch(`http://localhost:5256/api/B_Countries/${countryId}/region`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.regionName) {
+                        setActualRegionName(data.regionName);
+                        setActualRegionId(data.regionId);
+                    }
+                    setIsLoading(false);
+                })
+                .catch(err => {
+                    console.log("Error fetching region data:", err);
+                    setIsLoading(false);
+                });
+        } else {
+            setIsLoading(false);
+        }
+    };
+
+    // Determine which region name to display - use the actual if available, otherwise use from state
+    const displayRegionName = actualRegionName || countryData.state?.regionName;
+    // Determine which region ID to use for navigation - use the actual if available, otherwise use from state
+    const navigationRegionId = actualRegionId || countryData.state?.regionId;
 
     return (
         <>
@@ -54,7 +98,7 @@ function CountryTemperatureDetail() {
                                     
                                     <div className="d-flex align-items-center mb-3">
                                         <i className="bi bi-globe2 text-info me-2"></i>
-                                        <p className="card-text mb-0">Region: {countryData.state.regionName}</p>
+                                        <p className="card-text mb-0">Region: {isLoading ? "Loading..." : displayRegionName}</p>
                                     </div>
                                     
                                     <div className="d-flex align-items-center mb-3">
@@ -63,7 +107,7 @@ function CountryTemperatureDetail() {
                                     </div>
                                     
                                     <Link 
-                                        to={"/Country/" + countryData.state.regionId} 
+                                        to={"/Country/" + navigationRegionId} 
                                         className="btn btn-outline-primary w-100"
                                     >
                                         <i className="bi bi-arrow-left me-2"></i>
@@ -154,7 +198,7 @@ function CountryTemperatureDetail() {
                                     <div>
                                         <h5>Understanding Temperature Data</h5>
                                         <p>Temperature data shows historical climate trends for {countryData.state.countryName}. Positive change values (red) indicate warming, while negative values (blue) indicate cooling compared to baseline.</p>
-                                        <p className="mb-0">Regional averages, minimums, and maximums provide context for how this country compares to others in the {countryData.state.regionName} region.</p>
+                                        <p className="mb-0">Regional averages, minimums, and maximums provide context for how this country compares to others in the {isLoading ? "its" : displayRegionName} region.</p>
                                     </div>
                                 </div>
                             </div>

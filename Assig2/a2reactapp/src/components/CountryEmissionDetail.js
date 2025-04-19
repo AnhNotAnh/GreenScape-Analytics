@@ -11,14 +11,24 @@ function CountryEmissionDetail() {
     const [countryEmissionAd, setCountryEmissionAd] = useState([]);
     const [showEmissionAd, setShowEmissionAd] = useState(false); // show table if true
     const [selectedElement, setSelectedElement] = useState(null);
+    // Add new state variables for the country's actual region info
+    const [actualRegionName, setActualRegionName] = useState(countryData.state?.regionName || "");
+    const [actualRegionId, setActualRegionId] = useState(countryData.state?.regionId || 0);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         console.log("Component load useEffect()")
+        setIsLoading(true);
         fetch(`http://localhost:5256/api/B_Countries/SummaryCountryEmissionData/${countryId}`)
             .then(response => response.json())
-            .then(data => setCountryEmissionSum(data))
+            .then(data => {
+                setCountryEmissionSum(data);
+                // After getting emission data, check if we need to fetch actual region data
+                fetchActualRegionData();
+            })
             .catch(err => {
-                console.log(err)
+                console.log(err);
+                setIsLoading(false);
             })
     }, [countryId]);
 
@@ -33,6 +43,32 @@ function CountryEmissionDetail() {
             })
     }, []);
 
+    // New function to fetch the actual region data for this country
+    const fetchActualRegionData = () => {
+        // Only fetch if we think we need to (coming from "All regions" view)
+        if (countryData.state?.regionName === "All Regions and Countries" || !countryData.state?.regionName) {
+            fetch(`http://localhost:5256/api/B_Countries/${countryId}/region`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.regionName) {
+                        setActualRegionName(data.regionName);
+                        setActualRegionId(data.regionId);
+                    }
+                    setIsLoading(false);
+                })
+                .catch(err => {
+                    console.log("Error fetching region data:", err);
+                    setIsLoading(false);
+                });
+        } else {
+            setIsLoading(false);
+        }
+    };
+
+    // Determine which region name to display - use the actual if available, otherwise use from state
+    const displayRegionName = actualRegionName || countryData.state?.regionName;
+    // Determine which region ID to use for navigation - use the actual if available, otherwise use from state
+    const navigationRegionId = actualRegionId || countryData.state?.regionId;
 
     function showEmissionData(elementID, elementName) {
         setShowEmissionAd(true);
@@ -83,11 +119,11 @@ function CountryEmissionDetail() {
                                     
                                     <div className="d-flex align-items-center mb-3">
                                         <i className="bi bi-globe2 text-info me-2"></i>
-                                        <p className="card-text mb-0">Region: {countryData.state.regionName}</p>
+                                        <p className="card-text mb-0">Region: {isLoading ? "Loading..." : displayRegionName}</p>
                                     </div>
                                     
                                     <Link 
-                                        to={"/Country/" + countryData.state.regionId} 
+                                        to={"/Country/" + navigationRegionId} 
                                         className="btn btn-outline-primary w-100"
                                     >
                                         <i className="bi bi-arrow-left me-2"></i>
