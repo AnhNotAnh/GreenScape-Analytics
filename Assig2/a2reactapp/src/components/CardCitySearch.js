@@ -9,6 +9,10 @@ function CardCitySearch({ countryName, countryImage, regionName, regionId }) {
     const [countryId, setCountryId] = useState(params.countryId);
     const [loading, setLoading] = useState(true);
     const [searchActive, setSearchActive] = useState(false);
+    // Add new state variables for the country's actual region info
+    const [actualRegionName, setActualRegionName] = useState(regionName || "");
+    const [actualRegionId, setActualRegionId] = useState(regionId || 0);
+    const [isLoadingRegion, setIsLoadingRegion] = useState(false);
 
     useEffect(() => {
         setLoading(true);
@@ -17,12 +21,35 @@ function CardCitySearch({ countryName, countryImage, regionName, regionId }) {
             .then(data => {
                 setCardData(data);
                 setLoading(false);
+                
+                // After loading city data, check if we need to fetch actual region data
+                if (regionName === "All Regions and Countries") {
+                    fetchActualRegionData();
+                }
             })
             .catch(err => {
                 console.log(err);
                 setLoading(false);
             })
     }, [countryId, query]);
+
+    // New function to fetch the actual region data for this country
+    const fetchActualRegionData = () => {
+        setIsLoadingRegion(true);
+        fetch(`http://localhost:5256/api/C_Cities/country/${countryId}/region`)
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.regionName) {
+                    setActualRegionName(data.regionName);
+                    setActualRegionId(data.regionId);
+                }
+                setIsLoadingRegion(false);
+            })
+            .catch(err => {
+                console.log("Error fetching region data:", err);
+                setIsLoadingRegion(false);
+            });
+    };
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -37,6 +64,10 @@ function CardCitySearch({ countryName, countryImage, regionName, regionId }) {
         setQuery('');
         setSearchActive(false);
     }
+
+    // Determine which region name to display and region ID to use for navigation
+    const displayRegionName = actualRegionName || regionName;
+    const navigationRegionId = actualRegionId || regionId;
 
     return (
         <div className="container">
@@ -53,14 +84,16 @@ function CardCitySearch({ countryName, countryImage, regionName, regionId }) {
                         </div>
                         <div className="card-body">
                             <div className="mb-2">
-                                <span className="badge bg-primary me-2">{regionName}</span>
+                                <span className="badge bg-primary me-2">
+                                    {isLoadingRegion ? "Loading region..." : displayRegionName}
+                                </span>
                                 <span className="badge bg-success">{countryName}</span>
                             </div>
                             <h4 className="card-title">{countryName}</h4>
                             <p className="card-text text-muted mb-3">
                                 Total cities: {cardData.length}
                             </p>
-                            <Link to={"/Country/" + regionId} className="btn btn-primary">
+                            <Link to={"/Country/" + navigationRegionId} className="btn btn-primary">
                                 <i className="bi bi-arrow-left me-2"></i>
                                 Back to Countries
                             </Link>
