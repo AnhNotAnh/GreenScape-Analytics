@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link, useLocation } from "react-router-dom";
+import TemperatureGraph from './graphs/TemperatureGraph';
 
 function CountryTemperatureDetail() {
     let params = useParams();
@@ -138,7 +139,45 @@ function CountryTemperatureDetail() {
                         </div>
                     </div>
                     
-                    {/* Temperature Visualization Card - Placeholder for future data visualization */}
+                    {/* Temperature Graph Visualization */}
+                    <div className="card shadow-sm mb-4">
+                        <div className="card-header bg-primary text-white">
+                            <h5 className="mb-0">
+                                <i className="bi bi-graph-up me-2"></i>
+                                Temperature Trend Visualization
+                            </h5>
+                        </div>
+                        <div className="card-body">
+                            <div className="row">
+                                <div className="col-12">
+                                    {countryTemData.length > 0 ? (
+                                        <div className="graph-responsive">
+                                            <TemperatureGraph data={countryTemData} width={800} height={400} />
+                                        </div>
+                                    ) : (
+                                        <div className="alert alert-info">
+                                            <i className="bi bi-info-circle me-2"></i>
+                                            Loading temperature data visualization...
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="mt-3">
+                                <div className="alert alert-info">
+                                    <div className="d-flex align-items-center">
+                                        <i className="bi bi-lightbulb me-3 fs-3"></i>
+                                        <div>
+                                            <h5>Understanding Temperature Trends</h5>
+                                            <p>The graph above shows temperature changes over time for {countryData.state.countryName}, with the red line showing the country's temperature and the blue dashed line showing the regional average.</p>
+                                            <p className="mb-0">Positive values indicate warming compared to baseline temperatures, while negative values indicate cooling.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {/* About Temperature Data section (preserved from original) */}
                     <div className="card shadow-sm mb-4">
                         <div className="card-header bg-primary text-white">
                             <h5 className="mb-0">

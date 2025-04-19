@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link, useLocation } from "react-router-dom";
+import AirQualityGraph from './graphs/AirQualityGraph';
 
 function AirQualityDetail() {
     const cityData = useLocation();
@@ -113,6 +114,44 @@ function AirQualityDetail() {
                                             ))}
                                         </tbody> 
                                     </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Air Quality Graph Visualization */}
+                    <div className="card shadow-sm mb-4">
+                        <div className="card-header bg-info text-white">
+                            <h5 className="mb-0">
+                                <i className="bi bi-graph-up me-2"></i>
+                                Air Quality Trend Visualization
+                            </h5>
+                        </div>
+                        <div className="card-body">
+                            <div className="row">
+                                <div className="col-12">
+                                    {airQualityData.length > 0 ? (
+                                        <div className="graph-responsive text-center">
+                                            <AirQualityGraph data={airQualityData} width={800} height={400} />
+                                        </div>
+                                    ) : (
+                                        <div className="alert alert-info">
+                                            <i className="bi bi-info-circle me-2"></i>
+                                            Loading air quality data visualization...
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="mt-3">
+                                <div className="alert alert-info">
+                                    <div className="d-flex align-items-center">
+                                        <i className="bi bi-lightbulb me-3 fs-3"></i>
+                                        <div>
+                                            <h5>Understanding Air Quality Metrics</h5>
+                                            <p>This graph shows PM10 and PM2.5 average concentrations by year. PM10 refers to particulate matter less than 10 micrometers in diameter, while PM2.5 refers to particulate matter less than 2.5 micrometers.</p>
+                                            <p className="mb-0">The WHO guidelines for annual mean concentrations are 20 µg/m³ for PM10 and 10 µg/m³ for PM2.5 (shown as dotted lines when applicable).</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
