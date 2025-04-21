@@ -69,17 +69,17 @@ function CountryEmissionDetail() {
 
     // Function to handle sorting by year
     const handleSortByYear = () => {
-        // Toggle sort direction
+        // Toggle the direction immediately
         const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
-        setSortDirection(newDirection);
+        setSortDirection(newDirection); 
         
-        // Get unique years and sort them
+        // Get unique years and sort them based on new direction
         const uniqueYears = [...new Set(countryEmissionSum.map(item => item.year))];
         const sortedYears = uniqueYears.sort((a, b) => {
-            if (newDirection === 'asc') {
-                return a - b; // Ascending: lowest year first
-            } else {
+            if (newDirection === 'desc') {
                 return b - a; // Descending: highest year first
+            } else {
+                return a - b; // Ascending: lowest year first
             }
         });
         
@@ -91,6 +91,7 @@ function CountryEmissionDetail() {
             sortedData.push(...itemsForYear);
         });
         
+        // Update the data
         setCountryEmissionSum(sortedData);
     };
 

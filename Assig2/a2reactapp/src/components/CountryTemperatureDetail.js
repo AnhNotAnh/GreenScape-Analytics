@@ -25,7 +25,13 @@ function CountryTemperatureDetail() {
             .then(data => { 
                 setMinYear(data.minYear); 
                 setMaxYear(data.maxYear); 
-                setCountryTemData(data.rawTemperatureData);
+                
+                // Sort the data in ascending order to match sortDirection
+                const sortedData = [...data.rawTemperatureData].sort((a, b) => 
+                    a.theCountryTempData.year - b.theCountryTempData.year
+                );
+                
+                setCountryTemData(sortedData);
                 
                 // If there's data and it has country information with region
                 if (data.rawTemperatureData && data.rawTemperatureData.length > 0) {
@@ -65,19 +71,20 @@ function CountryTemperatureDetail() {
 
     // Function to handle sorting by year
     const handleSortByYear = () => {
-        // Toggle sort direction
+        // Toggle the direction immediately
         const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
         setSortDirection(newDirection);
         
-        // Sort the data based on the year
+        // Sort the data based on the new direction
         const sortedData = [...countryTemData].sort((a, b) => {
-            if (newDirection === 'asc') {
-                return a.theCountryTempData.year - b.theCountryTempData.year;
-            } else {
+            if (newDirection === 'desc') {
                 return b.theCountryTempData.year - a.theCountryTempData.year;
+            } else {
+                return a.theCountryTempData.year - b.theCountryTempData.year;
             }
         });
         
+        // Update the data
         setCountryTemData(sortedData);
     };
 
