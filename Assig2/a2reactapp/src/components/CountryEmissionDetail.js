@@ -127,8 +127,16 @@ function CountryEmissionDetail() {
                                         className="btn btn-outline-primary w-100"
                                     >
                                         <i className="bi bi-arrow-left me-2"></i>
-                                        Back to Country
+                                        Back to {actualRegionName ? actualRegionName : "Countries"}
                                     </Link>
+                                    {actualRegionName !== "All Regions and Countries" &&
+                                    <Link 
+                                        to={"/Country/" + 0} 
+                                        className="btn btn-outline-primary w-100 mt-2"
+                                    >
+                                        <i className="bi bi-arrow-left me-2"></i>
+                                        Back to All Regions and Countries
+                                    </Link> }
                                 </div>
                             </div>
                         </div>
