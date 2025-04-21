@@ -4,7 +4,7 @@ function Country() {
     return (
         <>
             <div>
-                <h2>Country</h2>
+                <h2>Countries</h2>
             </div>
             <CardCountrySearch/>
             

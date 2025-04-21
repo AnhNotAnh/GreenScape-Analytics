@@ -4,7 +4,7 @@ function Region() {
     return (
         <>
             <div className="mb-3">
-                <h2>Region</h2>
+                <h2>Regions</h2>
             </div>
             <CardRegionSearch />
         </>

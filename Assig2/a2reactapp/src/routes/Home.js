@@ -64,6 +64,18 @@ function Home() {
                         </div>
                     </div>
                 </div>
+
+                <div className="row mt-5">
+                    <div className="col-md-12">
+                        <div className="alert alert-warning" role="alert">
+                            <h5 className="alert-heading text-center">⚠️ Disclaimer</h5>
+                            <hr />
+                            <p><strong>Please Note:</strong>  The data displayed on this platform is provided for educational and demonstration purposes only. While aiming for accuracy, some information may be incomplete, outdated, or incorrect.</p>
+                            <p>This site should not be used for decision-making or official reporting.</p>
+                            <p className="mb-0 text-center"><strong>Always refer to verified and official sources for accurate environmental data.</strong></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     )
