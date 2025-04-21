@@ -13,6 +13,8 @@ function CountryTemperatureDetail() {
     const [actualRegionName, setActualRegionName] = useState(countryData.state?.regionName || "");
     const [actualRegionId, setActualRegionId] = useState(countryData.state?.regionId || 0);
     const [isLoading, setIsLoading] = useState(true);
+    // Add new state for sorting
+    const [sortDirection, setSortDirection] = useState('asc'); // 'asc' for ascending, 'desc' for descending
 
     // Fetch temperature data
     useEffect(() => {
@@ -59,6 +61,24 @@ function CountryTemperatureDetail() {
         } else {
             setIsLoading(false);
         }
+    };
+
+    // Function to handle sorting by year
+    const handleSortByYear = () => {
+        // Toggle sort direction
+        const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+        setSortDirection(newDirection);
+        
+        // Sort the data based on the year
+        const sortedData = [...countryTemData].sort((a, b) => {
+            if (newDirection === 'asc') {
+                return a.theCountryTempData.year - b.theCountryTempData.year;
+            } else {
+                return b.theCountryTempData.year - a.theCountryTempData.year;
+            }
+        });
+        
+        setCountryTemData(sortedData);
     };
 
     // Determine which region name to display - use the actual if available, otherwise use from state
@@ -138,9 +158,17 @@ function CountryTemperatureDetail() {
                                     <table className="table table-hover">
                                         <thead className="table-light">
                                             <tr>
-                                                <th scope="col">
-                                                    <i className="bi bi-calendar-event me-1"></i>
-                                                    Year
+                                                <th 
+                                                    scope="col" 
+                                                    style={{cursor: 'pointer'}} 
+                                                    onClick={handleSortByYear}
+                                                    className="table-sort-header"
+                                                >
+                                                    <div className="d-flex align-items-center">
+                                                        <i className="bi bi-calendar-event me-1"></i>
+                                                        Year
+                                                        <i className={`ms-1 bi bi-arrow-${sortDirection === 'asc' ? 'down' : 'up'}`}></i>
+                                                    </div>
                                                 </th>
                                                 <th scope="col">
                                                     <i className="bi bi-rulers me-1"></i>

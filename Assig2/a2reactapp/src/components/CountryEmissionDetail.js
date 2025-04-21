@@ -15,6 +15,8 @@ function CountryEmissionDetail() {
     const [actualRegionName, setActualRegionName] = useState(countryData.state?.regionName || "");
     const [actualRegionId, setActualRegionId] = useState(countryData.state?.regionId || 0);
     const [isLoading, setIsLoading] = useState(true);
+    // Add new state for sorting
+    const [sortDirection, setSortDirection] = useState('asc'); // 'asc' for ascending, 'desc' for descending
 
     useEffect(() => {
         console.log("Component load useEffect()")
@@ -63,6 +65,33 @@ function CountryEmissionDetail() {
         } else {
             setIsLoading(false);
         }
+    };
+
+    // Function to handle sorting by year
+    const handleSortByYear = () => {
+        // Toggle sort direction
+        const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+        setSortDirection(newDirection);
+        
+        // Get unique years and sort them
+        const uniqueYears = [...new Set(countryEmissionSum.map(item => item.year))];
+        const sortedYears = uniqueYears.sort((a, b) => {
+            if (newDirection === 'asc') {
+                return a - b; // Ascending: lowest year first
+            } else {
+                return b - a; // Descending: highest year first
+            }
+        });
+        
+        // Create a new sorted array preserving all elements for each year
+        const sortedData = [];
+        sortedYears.forEach(year => {
+            // Find all items for this year and add them in their original order
+            const itemsForYear = countryEmissionSum.filter(item => item.year === year);
+            sortedData.push(...itemsForYear);
+        });
+        
+        setCountryEmissionSum(sortedData);
     };
 
     // Determine which region name to display - use the actual if available, otherwise use from state
@@ -154,9 +183,17 @@ function CountryEmissionDetail() {
                                     <table className="table table-hover">
                                         <thead className="table-light">
                                             <tr>
-                                                <th scope="col">
-                                                    <i className="bi bi-calendar-event me-1"></i>
-                                                    Year
+                                                <th 
+                                                    scope="col" 
+                                                    style={{cursor: 'pointer'}} 
+                                                    onClick={handleSortByYear}
+                                                    className="table-sort-header"
+                                                >
+                                                    <div className="d-flex align-items-center">
+                                                        <i className="bi bi-calendar-event me-1"></i>
+                                                        Year
+                                                        <i className={`ms-1 bi bi-arrow-${sortDirection === 'asc' ? 'down' : 'up'}`}></i>
+                                                    </div>
                                                 </th>
                                                 <th scope="col">
                                                     <i className="bi bi-tag me-1"></i>
